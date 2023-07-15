@@ -6,7 +6,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 load_dotenv()
 
-doc_reader = PdfReader('./documenti/harry_potter_the_sorcerer_s_stone_removed.pdf')
+doc_reader = PdfReader('documenti/J_K_Rowling_Harry_Potter_e_la_camera_dei_segreti_ita_cap1.pdf')
 #print(doc_reader)
 
 #estrarre da pdf e salvare in variabile
@@ -28,8 +28,8 @@ text_splitter = CharacterTextSplitter(
 )
 texts=text_splitter.split_text(raw_text)
 
-#print(len(texts))
-print(texts[0])
+print('Numero di chuncks: '+ str(len(texts)))
+#print(texts[0])
 
 #embedding
 print('--------------------------')
@@ -37,8 +37,8 @@ embedding = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_API_KEY'))
 docsearch = FAISS.from_texts(texts, embedding)
 print(docsearch.embedding_function)
 
-query = "Who was Mr. Dursley?"
+query = "Come si chiama la civetta di Harry Potter?"
+print(query)
 docs = docsearch.similarity_search(query)
-print(len(docs))
-print(docs[0])
+print(docs)
 
