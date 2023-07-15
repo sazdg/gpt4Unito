@@ -1,5 +1,5 @@
-# MyLangChain
-GPT 4 Unito
+# Argomento
+GPT 4 Unito with LangChain
 
 # Environment Setup
 In order to set your environment up to run the code here, first install all requirements:
@@ -7,7 +7,7 @@ In order to set your environment up to run the code here, first install all requ
 ```shell
 pip3 install -r requirements.txt
 ```
-rinominare ".envprova.txt" in ".env"
+rinominare ".envprova.txt" in ".env",
 inserire i token richiesti
 
 # Fonti

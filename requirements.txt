@@ -6,3 +6,7 @@ tiktoken~=0.4.0
 faiss-cpu~=1.7.4
 #pinecone-client~=2.2.1
 #sympy~=
+
+#lettura pagine html
+requests~=2.31.0
+BeautifulSoup4~=4.12.2
