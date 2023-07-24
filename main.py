@@ -5,9 +5,9 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 
 load_dotenv()
-
+argomento = 'tesi_laurea'
 # Leggi il contenuto del file di testo
-with open('documenti/prova.txt', 'r', encoding='utf-8') as file:
+with open(f'documenti/{argomento}.txt', 'r', encoding='utf-8') as file:
     raw_text = file.read()
 
 # Split su numero di caratteri
@@ -27,7 +27,7 @@ embedding = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_API_KEY'))
 docsearch = FAISS.from_texts(texts, embedding)
 print(docsearch.embedding_function)
 
-query = "Compilazione della Domanda per il conseguimento del titolo di laurea"
+query = "Come rinunciare all'esame di laurea"
 print(query)
 docs = docsearch.similarity_search(query)
 print(docs)
