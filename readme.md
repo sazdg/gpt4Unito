@@ -2,14 +2,13 @@
 GPT 4 Unito with LangChain
 
 # Environment Setup
-In order to set your environment up to run the code here, first install all requirements:
+Prima di eseguire il codice installare le librerie richieste
 
 ```shell
 pip3 install -r requirements.txt
 ```
-rinominare ".envprova.txt" in ".env",
-inserire i token richiesti
+Creare una copia di "envprova.txt" e rinominarlo in ".env",
+Inserire i token richiesti, al momento è necessario solo OPENAI_API_KEY
 
-# Fonti
-[Link youtube: lettura file pdf](https://www.youtube.com/watch?v=ZzgUqFtxgXI)
+
 

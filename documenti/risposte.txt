@@ -11,3 +11,12 @@ risposta:  Non so.
 domanda: Cosa devo fare per rinunciare agli studi?
 risposta:  Per rinunciare agli studi devi inviare una segnalazione, tramite apposito modulo, alla Segreteria Studenti e annullare la domanda di conseguimento titolo, accedendo alla procedura MyUniTO.
 
+domanda: Chi è Edvige?
+risposta:  Edvige è la civetta di Harry.
+
+domanda: Does Mrs. Dursley have a sister?
+risposta:  Yes, Mrs. Dursley has a sister.
+
+domanda: Mrs. Dursley ha una sorella?
+risposta:  Sì, Mrs. Dursley ha una sorella.
+

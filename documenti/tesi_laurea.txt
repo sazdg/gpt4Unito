@@ -47,8 +47,7 @@ Rinuncia all'esame di laurea
 
 
 
-In caso di rinuncia all'esame di laurea occorre inviare una segnalazione, tramite apposito modulo, alla Segreteria Studenti. E' necessario altresì annullare la domanda di conseguimento titolo,  accedendo alla procedura MyUniTO 
-Modulo di rinuncia all'esame di laurea
+In caso di rinuncia all'esame di laurea occorre inviare una segnalazione alla Segreteria studenti, tramite HELP DESK del Polo CLE con oggetto: Domanda di Laurea.  E' necessario altresì annullare la domanda di conseguimento titolo,  accedendo alla procedura MyUniTO
 
 Calendario e scadenze delle sessioni di laurea e informazioni sull'appello riservato
 
@@ -72,6 +71,7 @@ Calendario a.a. 2019-2020
 Calendario a.a. 2018-2019
 
 Calendario a.a. 2017-2018
+
 
 
 Prima sessione autunnale a.a. 2022-2023 (settembre 2023)Sessione di laurea: 6 - 15 settembre 2023Domanda di conseguimento del titolo di laurea: 1 - 10 luglio 2023Tesi on line: entro il 1° settembre 2023Ultimo esame: entro la sessione di luglio 2023
@@ -241,5 +241,4 @@ Manuale delle istruzioni per la compilazione della domanda di conseguimento del 
 Titolo tesi
 Autocertificazione esami ancora da sostenere (il modulo deve essere allegato, insieme al file del libretto universitario,  nella procedura on line "Domanda conseguimento titolo" - voce "Libretto Carriera")
 Frontespizio Tesi
-Richiesta di rinuncia all'esame generale di laurea
 Attestato di menzione e/o dignità di stampa
