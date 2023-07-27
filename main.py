@@ -9,7 +9,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 
 load_dotenv()
-argomento = 'CCNL-26_MAGGIO_2021.pdf'
+argomento = 'tesi_laurea.pdf'
 raw_text = ''
 
 
@@ -44,11 +44,12 @@ print(docsearch.embedding_function)
 
 query = input("Inserisci la domanda:")
 docs = docsearch.similarity_search(query)
-#print(docs)
+# print(docs)
 
 chain = load_qa_chain(OpenAI(),chain_type="stuff")
+# impostazioni template di risposta
 template_risposta = chain.llm_chain.prompt.template
-#print(template_risposta)
+# print(template_risposta)
 risposta_finale = chain.run(input_documents=docs,question=query)
 print(risposta_finale)
 

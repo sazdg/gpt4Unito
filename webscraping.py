@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-#otteniamo solo le informazioni su internet, pulisce il testo
+#otteniamo le informazioni su internet, pulisce il testo
 URL = "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Laurearsi/tesi_laurea.html"
 
 argomento = 'tesi_laurea'

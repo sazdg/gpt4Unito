@@ -1,7 +1,9 @@
 domanda: Quali sono le sessioni di laurea?
 risposta:  Le sessioni di laurea sono la sessione estiva (luglio 2022, luglio 2023), la prima sessione autunnale (settembre 2022, settembre 2023) e la seconda sessione autunnale (novembre 2022, novembre 2023).
+
 domanda: Come ti chiami?
 risposta:  Non lo so.
+
 domanda: Chi sei?
 risposta:  Io sono uno studente dell'Università degli Studi di Torino.
 
