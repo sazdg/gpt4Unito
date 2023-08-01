@@ -9,7 +9,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 
 load_dotenv()
-argomento = 'tesi_laurea.pdf'
+argomento = 'tesi_laurea.txt'
 raw_text = ''
 
 
