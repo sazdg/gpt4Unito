@@ -33,7 +33,6 @@ text_splitter = CharacterTextSplitter(
     length_function=len,
 )
 texts = text_splitter.split_text(raw_text)
-
 print('Numero di chunks:', len(texts))
 
 # Embedding
