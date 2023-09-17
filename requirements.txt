@@ -17,3 +17,11 @@ sentence_transformers
 requests~=2.31.0
 BeautifulSoup4~=4.12.2
 lxml~=4.9.3
+
+#main_bard
+bardapi~=0.1.32
+
+#main_huggingface
+#langchain~=0.0.231
+huggingface_hub=0.16.4
+sentence_transformers=2.2.2

@@ -19,3 +19,4 @@ oppure
 ```shell
 python main_gpt4all.py
 ```
+inserire l'API di google bard, se non funziona disconnettersi e riprovare

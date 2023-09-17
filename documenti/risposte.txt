@@ -73,3 +73,87 @@ tempo: 0 minuti e 55 secondi
 
 
 #ggml-vic13b-q5_1
+domanda: Dimmi 5 cose da fare a Trapani
+risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n57\n[["di",115],["af.httprm",115,"2563229407050185197",67]]\n25\n[["e",4,null,null,132]]\n'. 
+Unable to get response.
+Please double-check the cookie values and verify your network environment or google account.
+tempo: 0 minuti e 1 secondi
+
+domanda: Dimmi 5 cose da fare a Trapani
+risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n56\n[["di",74],["af.httprm",74,"4651876568880542591",149]]\n25\n[["e",4,null,null,131]]\n'. 
+Unable to get response.
+Please double-check the cookie values and verify your network environment or google account.
+tempo: 0 minuti e 1 secondi
+
+domanda: what is google bard?
+risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n56\n[["di",58],["af.httprm",58,"-1588817876683899897",93]]\n25\n[["e",4,null,null,131]]\n'. 
+Unable to get response.
+Please double-check the cookie values and verify your network environment or google account.
+tempo: 0 minuti e 1 secondi
+
+domanda: Dimmi 5 cose da fare a Trapani
+risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n57\n[["di",136],["af.httprm",136,"6096943472211368660",62]]\n25\n[["e",4,null,null,132]]\n'. 
+Unable to get response.
+Please double-check the cookie values and verify your network environment or google account.
+tempo: 0 minuti e 1 secondi
+
+domanda: Dimmi 5 cose da fare a Trapani
+risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n55\n[["di",92],["af.httprm",91,"3297580797742899087",69]]\n25\n[["e",4,null,null,130]]\n'. 
+Unable to get response.
+Please double-check the cookie values and verify your network environment or google account.
+tempo: 0 minuti e 1 secondi
+
+domanda: Dimmi 5 cose da fare a Trapani
+risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n56\n[["di",87],["af.httprm",87,"2084190626814224232",152]]\n25\n[["e",4,null,null,131]]\n'. 
+Unable to get response.
+Please double-check the cookie values and verify your network environment or google account.
+tempo: 0 minuti e 1 secondi
+
+domanda: Dimmi 5 cose da fare a Trapani
+risposta: Ecco 5 cose da fare a Trapani:
+
+1. **Visita il centro storico.** Il centro storico di Trapani è un labirinto di vicoli stretti e tortuosi, edifici storici e chiese. Da non perdere la Cattedrale di San Lorenzo, la Chiesa del Purgatorio e la Torre di Ligny.
+2. **Fai una passeggiata sul lungomare.** Il lungomare di Trapani è un luogo ideale per rilassarsi e godersi la vista del mare e delle isole Egadi. Da qui è possibile anche prendere una barca per visitare le isole.
+3. **Visita le saline.** Le saline di Trapani sono una delle principali attrazioni turistiche della città. Si possono visitare a piedi o in barca e sono un luogo ideale per conoscere il processo di produzione del sale.
+4. **Fai un giro in barca alle isole Egadi.** Le isole Egadi sono un arcipelago di tre isole situato a pochi chilometri da Trapani. Le isole sono raggiungibili in barca e offrono una varietà di attività, tra cui nuoto, snorkeling, diving e trekking.
+5. **Assaggia la cucina locale.** La cucina di Trapani è ricca di sapori e profumi. Da non perdere i piatti a base di pesce, come la pasta con le sarde, il cous cous e il pesce spada alla griglia.
+
+Trapani è una città che offre qualcosa per tutti. Se stai cercando una vacanza rilassante al mare, o una vacanza più avventurosa, Trapani è la destinazione perfetta per te.
+tempo: 0 minuti e 5 secondi
+
+#hugging face
+domanda: Quali sono le sessioni di laurea?
+risposta: Seconda sessione autunnale a.a. 2018/2019 (novembre 2019) Sessione di laurea: 11 novembre - 29 novembre 2019Domanda di conseguimento del titolo di laurea: 1 - 10 ottobre 2019Tesi on line: entro il 4 novembre 2019Ultimo esame: entro la sessione di settembre con riserva dell'appello disponibile ai laureandi*
+
+Sessione straordinaria a.a. 2018/2019Sessione anticipata a.a. 2019/2020 (marzo 2020) Sessione di laurea: 16 marzo - 3 aprile 2020Domanda di conseguimento del titolo di laurea: 1 - 13 gennaio 2020Tesi on line: entro il 9 marzo 2020 Proroga Scadenza consegna Tesi on line Ultimo esame: entro la sessione di febbraio 2020 (compresi Altre attività/Tirocini/Laboratori
+Avviso importante per i laureandi
+HUGGING FACE
+tempo: 3 minuti e 28 secondi
+
+domanda: Cosa devo fare per laurearmi?
+risposta: Per la compilazione si consiglia di consultare la voce dedicata alle Istruzioni per la compilazione della domanda,
+per consentire allo studente di effettuare l'upload di tutta la documentazione richiesta entro i termini previsti, il dipartimento mette a disposizione una versione stampabile del modulo del Titolo tesi. La laureanda e il laureando potranno così, tempestivamente, sottoporre il documento alla firma del docente relatore,
+in considerazione dei tempi tecnici di accredito del pagamento della tassa di laurea è preferibile che si provveda al versamento sin dal primo giorno di apertura della procedura della compilazione della domanda di laurea.
+
+Consegna dell'elaborato
+HUGGING FACE
+tempo: 0 minuti e 36 secondi
+
+domanda: Se mi laureo a marzo devo pagare le tasse?
+risposta: Per la compilazione si consiglia di consultare la voce dedicata alle Istruzioni per la compilazione della domanda,
+per consentire allo studente di effettuare l'upload di tutta la documentazione richiesta entro i termini previsti, il dipartimento mette a disposizione una versione stampabile del modulo del Titolo tesi. La laureanda e il laureando potranno così, tempestivamente, sottoporre il documento alla firma del docente relatore,
+in considerazione dei tempi tecnici di accredito del pagamento della tassa di laurea è preferibile che si provveda al versamento sin dal primo giorno di apertura della procedura della compilazione della domanda di laurea.
+
+Consegna dell'elaborato
+HUGGING FACE
+tempo: 0 minuti e 34 secondi
+
+domanda: Qual è il termine per laurearsi a marzo?
+risposta: Per la compilazione si consiglia di consultare la voce dedicata alle Istruzioni per la compilazione della domanda,
+per consentire allo studente di effettuare l'upload di tutta la documentazione richiesta entro i termini previsti, il dipartimento mette a disposizione una versione stampabile del modulo del Titolo tesi. La laureanda e il laureando potranno così, tempestivamente, sottoporre il documento alla firma del docente relatore,
+in considerazione dei tempi tecnici di accredito del pagamento della tassa di laurea è preferibile che si provveda al versamento sin dal primo giorno di apertura della procedura della compilazione della domanda di laurea.
+
+Consegna dell'elaborato
+HUGGING FACE
+tempo: 0 minuti e 50 secondi
+

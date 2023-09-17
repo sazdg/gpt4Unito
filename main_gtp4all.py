@@ -77,5 +77,5 @@ risposta_finale = llm_chain.run(query)
 fine = time.time() - inizio
 file_risposta = open("documenti/risposte.txt",'a',encoding='utf-8')
 minuti, secondi = divmod(fine, 60)
-file_risposta.write(f"domanda: {query}\nrisposta: {risposta_finale}\ntempo: {int(minuti)} minuti e {int(secondi)} secondi\n\n")
+file_risposta.write(f"domanda: {query}\nrisposta: {risposta_finale}\nGPT4ALL\ntempo: {int(minuti)} minuti e {int(secondi)} secondi\n\n")
 file_risposta.close()

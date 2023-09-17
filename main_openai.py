@@ -53,5 +53,5 @@ risposta_finale = chain.run(input_documents=docs,question=query)
 print(risposta_finale)
 
 file_risposta = open("documenti/risposte.txt",'a',encoding='utf-8')
-file_risposta.write("domanda: "+query+"\n"+"risposta: "+risposta_finale+"\n"+"\n")
+file_risposta.write("domanda: "+query+"\n"+"risposta: "+risposta_finale+"\nOPENAI\n")
 file_risposta.close()
