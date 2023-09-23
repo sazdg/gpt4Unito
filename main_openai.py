@@ -1,6 +1,6 @@
 import os
 
-from PyPDF2 import PdfReader
+from about_pdf import getRawTest
 from dotenv import load_dotenv
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -9,21 +9,8 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 
 load_dotenv()
-argomento = 'tesi_laurea.txt'
-raw_text = ''
 
-
-if ".txt" in argomento:
-    # Leggi il contenuto del file di testo
-    with open(f'./documenti/{argomento}', 'r', encoding='utf-8') as file:
-        raw_text = file.read()
-
-elif ".pdf" in argomento:
-    doc_reader = PdfReader(f'./documenti/{argomento}')
-    for i, page in enumerate(doc_reader.pages):
-        text = page.extract_text()
-        if text:
-            raw_text += text
+raw_text = getRawTest()
 
 # Split su numero di caratteri
 text_splitter = CharacterTextSplitter(

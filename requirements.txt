@@ -22,6 +22,6 @@ lxml~=4.9.3
 bardapi~=0.1.32
 
 #main_huggingface
-#langchain~=0.0.231
+#langchain~=0.0.300
 huggingface_hub=0.16.4
 sentence_transformers=2.2.2

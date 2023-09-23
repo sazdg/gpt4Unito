@@ -3,27 +3,14 @@ from langchain.callbacks.base import BaseCallbackManager
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.llms import GPT4All
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from PyPDF2 import PdfReader
+from about_pdf import getRawTest
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 import time
 
-argomento = 'tesi_laurea.txt'
-raw_text = ''
 
-
-print(f'lettura del file {argomento}...')
-if ".txt" in argomento:
-    # Leggi il contenuto del file di testo
-    with open(f'./documenti/{argomento}', 'r', encoding='utf-8') as file:
-        raw_text = file.read()
-
-elif ".pdf" in argomento:
-    doc_reader = PdfReader(f'./documenti/{argomento}')
-    for i, page in enumerate(doc_reader.pages):
-        text = page.extract_text()
-        if text:
-            raw_text += text
+print(f'lettura del file...')
+raw_text = getRawTest()
 
 print('text splitting...')
 # Split su numero di caratteri

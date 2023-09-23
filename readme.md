@@ -13,10 +13,9 @@ Inserire i token richiesti, al momento è necessario solo OPENAI_API_KEY
 eseguire il seguente file python per ottenere file di testo con la documentazione unito 
 ```shell
 python webscraping.py
-python main_openai.py
+python main_falcon.py
 ```
-oppure
-```shell
-python main_gpt4all.py
-```
-inserire l'API di google bard, se non funziona disconnettersi e riprovare
+per ottenere l'API di hugging face andare sul sito > login utente
+in alto a destra nel menù utente > Settings > Access Tokens
+creare un uovo token con permesso di lettura
+

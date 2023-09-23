@@ -157,3 +157,79 @@ Consegna dell'elaborato
 HUGGING FACE
 tempo: 0 minuti e 50 secondi
 
+domanda: Qual è il termine per laurearsi a marzo?
+risposta: Il relatore di prova finale
+PIPELINEdomanda: Come si compila la domanda di laurea?
+risposta: 
+Go to the Help Desk page in the UniTO website. On the "MyUniTO" page, students who are currently enrolled in a program that requires the submission of a thesis (triennale) or thesis (magisteriale) are required to submit the application form and the related documents (in the "MyUniTO" page, in the "Dati per la compilazione della domanda di laurea" section).
+
+Once the application has been submitted, the student can access their personal page in "MyUniTO" and check the status of their request. If the application has been approved, the student can also access the "Dati per la compilazione della domanda di laurea" section and download the documents necessary to fill out the request.
+
+In the "Dati per la compilazione della domanda di laurea" section, the student must submit the documents required for the submission of the thesis. This must be done before the submission deadline.
+
+Once the submission deadline has expired, the student must check the status of their request in their personal page in "MyUniTO" to see if the thesis has been submitted. If the thesis has not been uploaded, the student must save it and upload it before submitting it in the "Dati per la compilazione della domanda di laurea" section.
+
+Once the thesis has been uploaded, the student will receive an email from the University's mail server, which will allow them to access their personal page in "MyUniTO" and check the status of their request.
+
+If the thesis has been uploaded but the status of the request is still "Approved" or "Pending," the student must continue to wait for the approval of the thesis. Once the thesis has been uploaded, the student must also upload the related documents in the "Dati per la compilazione della domanda di laurea" section.
+
+Once the thesis has been uploaded and the status of the request has been changed to "Approved," the student can continue to work on their thesis. Once the thesis is finished, the student must upload the thesis in the "Dati per la compilazione della domanda di laurea" section and also in the personal page in "MyUniTO."
+FALCON
+tempo: 1 minuti e 14 secondi
+
+domanda: Come si compila la domanda di laurea?
+risposta: 
+Go to the Help Desk page in the UniTO website. On the "MyUniTO" page, students who are currently enrolled in a program that requires the submission of a thesis (triennale) or thesis (magisteriale) are required to submit the application form and the related documents (in the "MyUniTO" page, in the "Dati per la compilazione della domanda di laurea" section).
+
+Once the application has been submitted, the student can access their personal page in "MyUniTO" and check the status of their request. If the application has been approved, the student can also access the "Dati per la compilazione della domanda di laurea" section and download the documents necessary to fill out the request.
+
+In the "Dati per la compilazione della domanda di laurea" section, the student must submit the documents required for the submission of the thesis. This must be done before the submission deadline.
+
+Once the submission deadline has expired, the student must check the status of their request in their personal page in "MyUniTO" to see if the thesis has been submitted. If the thesis has not been uploaded, the student must save it and upload it before submitting it in the "Dati per la compilazione della domanda di laurea" section.
+
+Once the thesis has been uploaded, the student will receive an email from the University's mail server, which will allow them to access their personal page in "MyUniTO" and check the status of their request.
+
+If the thesis has been uploaded but the status of the request is still "Approved" or "Pending," the student must continue to wait for the approval of the thesis. Once the thesis has been uploaded, the student must also upload the related documents in the "Dati per la compilazione della domanda di laurea" section.
+
+Once the thesis has been uploaded and the status of the request has been changed to "Approved," the student can continue to work on their thesis. Once the thesis is finished, the student must upload the thesis in the "Dati per la compilazione della domanda di laurea" section and also in the personal page in "MyUniTO."
+FALCON
+tempo: 0 minuti e 12 secondi
+
+
+domanda: cosa devo fare per laurearmi?
+risposta: 
+Go to the top
+1,229,586 people are following this question.
+Last update on December 4, 2020 - 08:55 AM.
+Viewed 1,024,681 times.
+Last update on December 4, 2020 - 08:55 AM.
+Viewed 1,024,681 times.
+Last update on December 4, 2020 - 08:55 AM.
+Viewed 1,024,681 times.
+FALCON
+tempo: 0 minuti e 21 secondi
+
+domanda: cosa devo fare per laurearmi?
+risposta: 
+If you have questions about the specific process or procedures related to your program, you should consult the Student Affairs Office. You can also reach out to your academic advisor or mentor for guidance and assistance.
+FALCON
+tempo: 0 minuti e 29 secondi
+
+domanda: Cosa devo fare per rinunciare agli studi?
+risposta: 
+'Rinunciare' is an Italian word that means to give up or leave something behind. In English, it's similar but can also mean to stop doing something or to let it go. To answer this question, it depends on what you want to do. If you want to stop attending classes or stop studying, you should talk to your professors and your academic advisor. They might have some advice on how to handle the situation. If you want to leave the university altogether, you should also talk to your academic advisor and check the university's policies. They may have some guidelines on how to do this. In general, it's best to be honest and open about your situation and to seek help from your university if you need it.
+FALCON
+tempo: 0 minuti e 6 secondi
+
+domanda: qual è la capitale della francia?
+risposta: 
+Go to the French Revolution page for more information about the country and its capital.
+FALCON
+tempo: 0 minuti e 1 secondi
+
+domanda: Cosa devo fare per rinunciare agli studi?
+risposta: 
+'Rinunciare' is an Italian word that means to give up or leave something behind. In English, it's similar but can also mean to stop doing something or to let it go. To answer this question, it depends on what you want to do. If you want to stop attending classes or stop studying, you should talk to your professors and your academic advisor. They might have some advice on how to handle the situation. If you want to leave the university altogether, you should also talk to your academic advisor and check the university's policies. They may have some guidelines on how to do this. In general, it's best to be honest and open about your situation and to seek help from your university if you need it.
+FALCON tiiuae/falcon-7b-instruct model_kwargs={"temperature":0.6, "max_new_tokens":2000})
+tempo: 0 minuti e 0 secondi
+
