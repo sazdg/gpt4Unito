@@ -72,18 +72,6 @@ Answer:
 tempo: 0 minuti e 55 secondi
 
 
-#ggml-vic13b-q5_1
-domanda: Dimmi 5 cose da fare a Trapani
-risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n57\n[["di",115],["af.httprm",115,"2563229407050185197",67]]\n25\n[["e",4,null,null,132]]\n'. 
-Unable to get response.
-Please double-check the cookie values and verify your network environment or google account.
-tempo: 0 minuti e 1 secondi
-
-domanda: Dimmi 5 cose da fare a Trapani
-risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n56\n[["di",74],["af.httprm",74,"4651876568880542591",149]]\n25\n[["e",4,null,null,131]]\n'. 
-Unable to get response.
-Please double-check the cookie values and verify your network environment or google account.
-tempo: 0 minuti e 1 secondi
 
 domanda: what is google bard?
 risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n56\n[["di",58],["af.httprm",58,"-1588817876683899897",93]]\n25\n[["e",4,null,null,131]]\n'. 
@@ -91,35 +79,6 @@ Unable to get response.
 Please double-check the cookie values and verify your network environment or google account.
 tempo: 0 minuti e 1 secondi
 
-domanda: Dimmi 5 cose da fare a Trapani
-risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n57\n[["di",136],["af.httprm",136,"6096943472211368660",62]]\n25\n[["e",4,null,null,132]]\n'. 
-Unable to get response.
-Please double-check the cookie values and verify your network environment or google account.
-tempo: 0 minuti e 1 secondi
-
-domanda: Dimmi 5 cose da fare a Trapani
-risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n55\n[["di",92],["af.httprm",91,"3297580797742899087",69]]\n25\n[["e",4,null,null,130]]\n'. 
-Unable to get response.
-Please double-check the cookie values and verify your network environment or google account.
-tempo: 0 minuti e 1 secondi
-
-domanda: Dimmi 5 cose da fare a Trapani
-risposta: Response Error: b')]}\'\n\n38\n[["wrb.fr",null,null,null,null,[9]]]\n56\n[["di",87],["af.httprm",87,"2084190626814224232",152]]\n25\n[["e",4,null,null,131]]\n'. 
-Unable to get response.
-Please double-check the cookie values and verify your network environment or google account.
-tempo: 0 minuti e 1 secondi
-
-domanda: Dimmi 5 cose da fare a Trapani
-risposta: Ecco 5 cose da fare a Trapani:
-
-1. **Visita il centro storico.** Il centro storico di Trapani è un labirinto di vicoli stretti e tortuosi, edifici storici e chiese. Da non perdere la Cattedrale di San Lorenzo, la Chiesa del Purgatorio e la Torre di Ligny.
-2. **Fai una passeggiata sul lungomare.** Il lungomare di Trapani è un luogo ideale per rilassarsi e godersi la vista del mare e delle isole Egadi. Da qui è possibile anche prendere una barca per visitare le isole.
-3. **Visita le saline.** Le saline di Trapani sono una delle principali attrazioni turistiche della città. Si possono visitare a piedi o in barca e sono un luogo ideale per conoscere il processo di produzione del sale.
-4. **Fai un giro in barca alle isole Egadi.** Le isole Egadi sono un arcipelago di tre isole situato a pochi chilometri da Trapani. Le isole sono raggiungibili in barca e offrono una varietà di attività, tra cui nuoto, snorkeling, diving e trekking.
-5. **Assaggia la cucina locale.** La cucina di Trapani è ricca di sapori e profumi. Da non perdere i piatti a base di pesce, come la pasta con le sarde, il cous cous e il pesce spada alla griglia.
-
-Trapani è una città che offre qualcosa per tutti. Se stai cercando una vacanza rilassante al mare, o una vacanza più avventurosa, Trapani è la destinazione perfetta per te.
-tempo: 0 minuti e 5 secondi
 
 #hugging face
 domanda: Quali sono le sessioni di laurea?
@@ -232,4 +191,135 @@ risposta:
 'Rinunciare' is an Italian word that means to give up or leave something behind. In English, it's similar but can also mean to stop doing something or to let it go. To answer this question, it depends on what you want to do. If you want to stop attending classes or stop studying, you should talk to your professors and your academic advisor. They might have some advice on how to handle the situation. If you want to leave the university altogether, you should also talk to your academic advisor and check the university's policies. They may have some guidelines on how to do this. In general, it's best to be honest and open about your situation and to seek help from your university if you need it.
 FALCON tiiuae/falcon-7b-instruct model_kwargs={"temperature":0.6, "max_new_tokens":2000})
 tempo: 0 minuti e 0 secondi
+
+domanda: qual è la capitale della francia?
+risposta: 
+C'est Paris.
+FALCON tiiuae/falcon-7b-instruct model_kwargs='temperature':0.95, 'max_new_tokens':32)
+tempo: 0 minuti e 0 secondi
+
+domanda: cosa fare per rinunciare agli studi?
+risposta: 
+Go to the top of the page to find more information.
+User 
+FALCON tiiuae/falcon-7b-instruct model_kwargs='temperature':0.95, 'max_new_tokens':32)
+tempo: 0 minuti e 1 secondi
+
+domanda: Qual è la capitale dell'italia?
+risposta:  Rome is the capital city of Italy.
+FALCON tiiuae/falcon-7b-instruct model_kwargs='temperature':0.95, 'max_new_tokens':2000)
+tempo: 0 minuti e 0 secondi
+
+domanda: Cosa devo fare per rinunciare agli studi?
+risposta:  You should consult with an academic advisor or counselor to discuss the best course of action for you. They can help you understand the process of dropping out and provide you with information on financial aid, job placement, and other resources that may be available to you.
+FALCON tiiuae/falcon-7b-instruct model_kwargs='temperature':0.95, 'max_new_tokens':2000)
+tempo: 0 minuti e 2 secondi
+
+domanda: qual è la capitale della francia?
+risposta: 
+Go to the France - Geography page to learn more about it.
+(FALCON tiiuae/falcon-7b-instruct temperature:0.6, max_new_tokens:2000, tempo: 0 minuti e 1 secondi)
+
+domanda: qual è la capitale della francia?
+ERRORE: Error raised by inference API: ['Error in `parameters.max_new_tokens`: ensure this value is less than or equal to 250']
+(GroNLP/gpt2-medium-italian-embeddings, temperature:0.6, max_new_tokens:2000)
+
+domanda: qual è la capitale della francia?
+ERRORE: Error raised by inference API: Internal Server Error
+(GroNLP/gpt2-medium-italian-embeddings, temperature:0.6, max_new_tokens:250)
+
+domanda: qual è la capitale della francia?
+ERRORE: Error raised by inference API: Internal Server Error
+(GroNLP/gpt2-medium-italian-embeddings, temperature:0.5, max_new_tokens:250)
+
+domanda: qual è la capitale della francia?
+ERRORE: 1 validation error for HuggingFaceHub
+__root__
+  Got invalid task sentence-similarity, currently only ('text2text-generation', 'text-generation', 'summarization') are supported (type=value_error)
+(sentence-transformers/all-MiniLM-L6-v2, temperature:0.6, max_new_tokens:250)
+
+domanda: qual è la capitale della francia?
+ERRORE: Error raised by inference API: Input is too long for this model, shorten your input or use 'parameters': {'truncation': 'only_first'} to run the model only on the first part.
+(Kaludi/chatgpt-gpt4-prompts-bart-large-cnn-samsum, temperature:0.6, max_new_tokens:250)
+
+domanda: capitale francia
+ERRORE: Error raised by inference API: Internal Server Error
+(Kaludi/chatgpt-gpt4-prompts-bart-large-cnn-samsum, temperature:0.6, max_new_tokens:250)
+
+Domanda: Consegna dell'elaborato
+ERRORE: Error raised by inference API: Input is too long for this model, shorten your input or use 'parameters': {'truncation': 'only_first'} to run the model only on the first part.
+(Kaludi/chatgpt-gpt4-prompts-bart-large-cnn-samsum, temperature:0.6, max_new_tokens:250)
+
+Domanda: Esperimento del cane di Pavlov
+Risposta: To evaluate the effectiveness of Pavlov's experiment, we can look at the symptoms of the dog in the experiment. Pavlov's experiment was focused on associating a neutral stimulus with a natural one. However, we can look at the symptoms of the dog to see if they're getting better over time.
+In terms of the dog's symptoms, Pavlov's experiment was successful. Pavlov's dogs showed signs of salivary secretion, which means they were producing saliva in response to the sound of the bell. This is a clear indication that Pavlov's experiment was successful.
+To evaluate the effectiveness of Pavlov's experiment, we can look at the symptoms of the dog in the experiment. Pavlov's experiment was focused on associating a neutral stimulus with a natural one. However, we can look at the symptoms of the dog to see if they're getting better over time.
+(tiiuae/falcon-7b-instruct, temperature:0.6, max_new_tokens:2000, tempo: 0 minuti e 7 secondi)
+
+Domanda: Quali sono le 4 A del comportamentismo
+Risposta: 
+Le 4 A del comportamentismo are:
+-	Ambientalismo: è l’acquisizione della conoscenza attraverso processi di riconoscimento, attenzione, memoria, immaginazione visiva, linguaggio, soluzione di problemi, decisioni.
+-	Abitudini: sono l’acquisizione della conoscenza attraverso processi di riconoscimento, attenzione, memoria, immaginazione visiva, linguaggio, soluzione di problemi, decisioni.
+-	Attitudini: sono l’acquisizione della conoscenza attraverso processi di riconoscimento, attenzione, memoria, immaginazione visiva, linguaggio, soluzione di problemi, decisioni.
+-	Apprendimento: è l’acquisizione della conoscenza attraverso processi di riconoscimento, attenzione, memoria, immaginazione visiva, linguaggio, soluzione di problemi, decisioni.
+(tiiuae/falcon-7b-instruct, temperature:0.6, max_new_tokens:2000, tempo: 0 minuti e 7 secondi)
+
+Domanda: chi è william james?
+Risposta:  William James (1842-1916) was an American philosopher, psychologist, and writer whose works became influential in the fields of psychology and philosophy of mind. He is best known for his work in the field of behaviorism, which he founded as a separate field from psychology.
+(tiiuae/falcon-7b-instruct, temperature:0.6, max_new_tokens:2000, tempo: 0 minuti e 2 secondi)
+
+Domanda: Cos'è il test proiettivo?
+Risposta: The test proiettivo is a standardized test that measures the cognitive functioning of a person, such as their memory, attention, problem-solving, and concentration. These tests are often used to evaluate the effectiveness of different treatment methods or to diagnose certain conditions.
+(tiiuae/falcon-7b-instruct, temperature:0.6, max_new_tokens:2000, tempo: 0 minuti e 2 secondi)
+[sbagliato]
+
+Domanda: Parlami dell'esperimento della gabbia dei topi di Skinner
+Risposta:  The experiment of the four basic components of operant conditioning by B.F. Skinner (1949) is a classic experiment in the field of learning.  It is a simple experiment designed to test the effects of positive reinforcement on the behavior of rats. The experiment consists of a box with a lever that can be pressed by the rats to get food. The rats learn to associate the lever being pressed with the food, and will press it to get the food, even when it is no longer connected to the lever. The experiment shows that the rats will press the lever to get food when they see it, even when the lever is not connected to the lever.  The experiment is a classic experiment in the field of learning psychology, and has been used to test the effectiveness of operant conditioning in other experiments.  In Skinner's experiment, the operant conditioning is not only reinforced with positive reinforcement, but the experiment can also be used to study the effects of negative reinforcement on the behavior of the rats.  The experiment can also be used to study the effects of the environment on the behavior of the rats, as the experiment can be manipulated to test the effects of different types of environments.  The experiment can also be used to study the effects of the experiment on the rats' behavior, as the experiment can be used to test the effects of different types of experiments on the rats' behavior.  Overall, the experiment is a classic experiment in the field of learning, and is still used today to study the effects of operant conditioning on the behavior of rats.∑
+B.F. Skinner (1949). The experimental analysis of behavior. New York: Norton.
+(tiiuae/falcon-7b-instruct, temperature:0.6, max_new_tokens:2000, tempo: 0 minuti e 22 secondi)
+
+Domanda: Cos'è la pulsione, rispondi in italiano
+Risposta:  In italiano la pulsione viene detto "tensione", come in francese "ressa".
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 1 secondi)
+
+Domanda: Quali sono i due paradigmi? Rispondi in italiano
+Risposta: 
+paradigma operante
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 0 secondi)
+
+Domanda: Quali sono i due paradigmi?
+Risposta: NEO-BEHAVIORISM: From Behaviorism To New Behaviorism.....
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 0 secondi)
+
+Domanda: Quali sono i due tipi di condizionamento?
+Risposta: 
+The two types of learning, conditioning that B.F. Skinner pioneered are classical learning and operant learning. Classical learning involves involuntary learning, such as Pavlov’s experiment with the bell and the dogs, while operant learning involves voluntary learning, such as the topography of a classroom.
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 2 secondi)
+
+Domanda: A cosa serve il comportamentismo?
+Risposta:  The behaviorism (feels like new paradigm of psychology) wasn't used that often after Daniel Cattell, he helped it spread into behaviorism.
+Instead he used insights from John B. Watson's laboratory to take the behaviorist view approach. The behaviorist approach recognizes that an individual's behavior is modified by the environment.
+The behaviorist approach also has many limitations and has been overshadowed by other perspectives.
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 3 secondi)
+
+Domanda: Definisci la teoria ingenua, in italiano
+Risposta: 
+The theory of human beings revolves around the concept that not everything is fabricated by the individual, as cartesian writings suggest, but it has a subjective, unrelated to reality sense as well. The way the research was conducted, systems used or used, are always unreliable in the fact that they are not real. The things that are created and created in research, that reconstruct an idealized representation should be considered, in the context of the theory of human beings. Representation related not only to reality but only to the perception of that reality.
+La teoria umana consiste nell’essere umano e negli stati emotivi, che operano nella vita sociale no qualcun altro semplice. Non facciamo sempre con certe inedite conclusioni. Eli Greenberg ha più volte condotto studi discussi- o sempre sinregistati su come sono in grado di organizzare events programmati come parentesi di ogni monumento che ti capita per caso. Il suo lavoro doveva stare a contesting Einstein’s theory of relativity: dalla gravità dei cipi cartesian all’attività dei fuoriserie. Ma, avvicinandosi alla psicologia e alla psicological, systems used or used, are always unreliable in the fact that they are not real. The things that are created and created in research, that reconstruct an idealized representation should be considered, in the context of the theory of� human beings. Taxonomies are centered at the center of the behaviors that activities and the observer can programmata according to the type and type. But classification of individuals is always made with the realization that a particular no qualcun altro semplice. Non facciamo sempre con certe inedite conclusioni. Eli Greenberg ha più volte condotto studi discussi- o sempre sinregistati su come sono in grado di organizzare events programmati come parentesi di ogni monumento che ti capita per caso. Il suo lavoro doveva stare a contesting Einstein’s theory of relativity: dalla gravità dei cipi cartesian all’attività dei fuoriserie Philosopher’s raps ridiculing modernity in the wake of the Enlightenment make you cherish your freedom to quote and dance the property of others. But the moral imperative of freedom that is often depicted in the English language has not been seen in Italy with the same frequency as in other countries. This conceptual framework, introduced by the philosopher Eera Minkoff, unveils the patterns that are preserved in feminist scholarship. This paper is therefore a rumination on the concepts made by Minkoff, but I have not depicted them within the context of academic feminism. One of Minkoff’s most interesting contributions was in the area of the subject idiosyncrasy: with this she beat almost in English and Italian on the topic belonging to the psychology of single women, no matter what kind of event, where or when. This subject “gives rise to a new gender discourse: the ‘non-person’ of the Western literature and the theory of feminism and women’s psychology” is an interesting topic for researchers that from research can have a wide and diffuse multicultural resonance. From this perspective, this paper wants to dwell on women’s issues through the idea of freedom.
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 22 secondi)
+
+Domanda: Definisci la teoria delle rappresentazioni sociali
+Risposta: 
+Answered on : 09/09/2020
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 0 secondi)
+
+Domanda: Qual è la teoria delle rappresentazioni sociali?
+Risposta: 
+The theory of social representations is in psychology that how the humans see and understand each other without actually communicating. It is a way to interpret another individual's behavior just from observation. The basic idea of this theory is to make people identify the same things, behaviors, or ideas based on the same examples or similar examples. It is also used to study things like crime, drug abuse, and other social behaviors because of its theory of teaching and learning. For example, the fear of being robbed may be taken on because of others similar fear which be learned and passed on through generations. This is a very helpful theory for understanding and interpreting behavior in society.
+(tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000, tempo: 0 minuti e 4 secondi)
+
+Domanda: Esperimento del cane di Pavlov
+ERRORE: Error raised by inference API: Could not load model Yhyu13/Guanaco-gptq-4bit with any of the following classes: (<class 'transformers.models.llama.modeling_llama.LlamaForCausalLM'>,). See the original errors:
+(Yhyu13/Guanaco-gptq-4bit, temperature:0.9, max_new_tokens:2000)
 

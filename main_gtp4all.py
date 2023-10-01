@@ -9,10 +9,8 @@ from langchain.vectorstores import FAISS
 import time
 
 
-print(f'lettura del file...')
 raw_text = getRawTest()
 
-print('text splitting...')
 # Split su numero di caratteri
 text_splitter = CharacterTextSplitter(
     separator='\n',
@@ -26,15 +24,13 @@ print(f'numero di chunks: {len(texts)}')
 #texts = text_splitter.split_text(raw_text)
 #text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024,chunk_overlap=64)
 #texts = text_splitter.split_documents(documents)
-print('fase di embedding...')
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
 faiss_index = FAISS.from_texts(texts, embeddings)
 faiss_index.save_local("./faiss_index/")
 
-print("loading indexes...")
+
 faiss_index = FAISS.load_local("./faiss_index/", embeddings)
-print("index loaded...")
 
 
 query = input("Inserisci la domanda: ")
@@ -47,18 +43,14 @@ template = """Please use the following context to answer questions.
 
 Question: {question}"""
 
-local_path = ("/Volumes/ACAI_BOWL/LLM_models/ggml-vic13b-q5_1")
-print('base call backmanager....')
+local_path = ("") #percorso modello ...ggml-vic13b-q5_1
+
 callback_manager = BaseCallbackManager([StreamingStdOutCallbackHandler()])
-print('nuovo oggetto gpt4all....')
 llm = GPT4All(model=local_path, callback_manager=callback_manager, verbose=True,repeat_last_n=0)
-print('nuovo oggetto prompt template....')
 prompt = PromptTemplate(template=template, input_variables=["question"])
-print('nuovo oggetto llmchain....')
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 
-print('sto pensando....')
 inizio = time.time()
 risposta_finale = llm_chain.run(query)
 fine = time.time() - inizio

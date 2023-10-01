@@ -1,4 +1,6 @@
 from PyPDF2 import PdfReader
+from langchain.document_loaders import PyPDFLoader
+from langchain.document_loaders import TextLoader
 def getRawTest(nome_file=""):
 	argomento = 'tesi_laurea.txt' if nome_file == "" else nome_file
 	raw_text = ''
@@ -19,8 +21,11 @@ def getRawTest(nome_file=""):
 
 def getObjDocuments(nome_file=""):
 	argomento = 'tesi_laurea.txt' if nome_file == "" else nome_file
-	from langchain.document_loaders import TextLoader
-	loader = TextLoader(f'./documenti/{argomento}')
-	documents = loader.load()
+	if ".txt" in argomento:
+		loader = TextLoader(f'./documenti/{argomento}')
+		documents = loader.load()
+	elif ".pdf" in argomento:
+		loader = PyPDFLoader(f'./documenti/{argomento}')
+		documents = loader.load_and_split()
 
 	return documents
