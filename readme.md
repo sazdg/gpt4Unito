@@ -19,3 +19,8 @@ per ottenere l'API di hugging face andare sul sito > login utente
 in alto a destra nel menù utente > Settings > Access Tokens
 creare un uovo token con permesso di lettura
 
+
+modelli sperimentati:
+* tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000
+* <li>google/flan-t5-large, temperature:0.9, max_new_tokens:250
+

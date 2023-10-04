@@ -67,7 +67,7 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('tiiuae/falcon-7b-instruct', 0.9, 2000, "CV_SaraDeGrandis_230522.pdf")
+        hf = AskHuggingFace('tiiuae/falcon-7b-instruct', 0.9, 2000, "tesi_laurea.txt")#'"psicologia.txt")
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')

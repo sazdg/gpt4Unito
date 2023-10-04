@@ -1,3 +1,4 @@
 .env
 .idea
 faiss_index/
+./documenti/risposte.txt

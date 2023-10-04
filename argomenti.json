@@ -1,0 +1,134 @@
+{
+   "argomenti": [
+     {
+     "titolo":"corsi",
+     "links": [
+      {
+        "descrizione": "profili_professionali",
+        "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=I_corsi/profili_professionali.html"
+      },
+      {
+        "descrizione": "contatti",
+        "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Organizzazione/contatti.html"
+      }]
+   },
+   {
+    "titolo":"corsi_triennale",
+  "links": [
+    {
+    "descrizione": "",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Iscriversi/requisiti_di_ammissione.html"
+    },
+    {
+    "descrizione": "",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/comunicazione_interculturale/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/ICT_innovazione_sociale/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/SISCO_scienze_intern_sviluppo_coop/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/SPS_scienze_politiche_sociali/presentazione.html&tab=3"
+    },{
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/CLASS_servizio_sociale/presentazione.html&tab=4"
+    }
+  ]},
+   {"titolo":"corsi_magistrale",
+  "links": [
+    {
+    "descrizione": "",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/antropologia_culturale/presentazione.html&tab=3"
+    },
+    {
+    "descrizione": "",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/SCINT_scienze_internazionali/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.eap.unito.it/do/home.pl/View?doc=admission_requirements.html"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/CPP_comunicazione_pubblica/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=/corsi_di_studio/cime/presentazione.html&tab=3"
+    },{
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/SCIGOV_scienze_governo/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "http://www.agic.unito.it/do/home.pl/View?doc=/Applying/admission_requirements.html"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/PSS_politiche_servizi_sociali/presentazione.html&tab=3"
+    },
+    {
+      "descrizione": "",
+      "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=corsi_di_studio/sociologia/presentazione.html&tab=3"
+    }
+  ]},
+  {"titolo":"iscriversi",
+  "links": [
+    {
+    "descrizione": "test_requisiti_minimi",
+    "link": "https://www.unito.it/didattica/immatricolazioni-e-iscrizioni/corsi-ad-accesso-libero"
+    },
+    {
+    "descrizione": "orientamento",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Iscriversi/orientamento.html"
+    },
+    {
+    "descrizione": "requisiti_ammissione",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Iscriversi/requisiti_di_ammissione.html\n"
+    },
+    {
+    "descrizione": "immatricolazioni_iscrizioni",
+    "link": "https://www.unito.it/didattica/immatricolazioni-e-iscrizioni"
+    },
+    {
+    "descrizione": "tasse",
+    "link": "https://www.unito.it/didattica/tasse"
+    },
+    {
+    "descrizione": "residenza",
+    "link": "https://www.unito.it/servizi/lo-studio/residenze-e-mense"
+    }
+  ]},
+  {"titolo":"studiare",
+  "links": [
+    {
+    "descrizione": "piano_carriera",
+    "link": "https://www.unito.it/servizi/lo-studio/piano-carriera"
+    },
+    {
+    "descrizione": "informazioni_esami",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Studiare/appelli.html"
+    }
+  ]},
+   {"titolo":"laurearsi",
+  "links": [
+    {
+    "descrizione": "laurea",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Laurearsi/tesi_laurea.html"
+    },
+    {
+    "descrizione": "proseguire_gli_studi",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Laurearsi/proseguire_gli_studi.html"
+    },
+    {
+    "descrizione": "job_placement",
+    "link": "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Laurearsi/job_placement.html\n"
+    }
+  ]}
+]
+}
