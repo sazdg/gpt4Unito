@@ -8,6 +8,7 @@ class WebScrapingUnito():
 
     def __init__(self):
         self.progressBar: tqdm = None
+        self.documentazione = None
 
     def loading(self, tempo=5):
         time.sleep(tempo)
@@ -16,12 +17,14 @@ class WebScrapingUnito():
 
     def start(self):
         file = open('./argomenti.json')
-        documentazione = json.load(file)
-        nLinks = self.countLinks(documentazione)
+        self.documentazione = json.load(file)
+        nLinks = self.countLinks()
+
+        #self.resetFiles()
         self.progressBar = tqdm.tqdm(total=nLinks)
 
 
-        for tema in documentazione["argomenti"]:
+        for tema in self.documentazione["argomenti"]:
             argomento = tema["titolo"]
             for siti in tema["links"]:
                 descrizione = siti["descrizione"]
@@ -39,12 +42,23 @@ class WebScrapingUnito():
         self.progressBar.close()
         self.progressBar = None
 
-    def countLinks(self, jsonLinks):
+    def countLinks(self):
         l = 0
-        for link in jsonLinks["argomenti"]:
-            for siti in link["links"]:
-                l+=1
+        if self.documentazione is not None:
+            for link in self.documentazione["argomenti"]:
+                l += len(link["links"])
         return l
+
+    def resetFiles(self):
+        if self.documentazione is not None:
+            for tema in self.documentazione["argomenti"]:
+                argomento = tema["titolo"]
+                file = open(f'documenti/{argomento}.txt', 'w')
+                file.close()
+            return True
+        else:
+            return False
+
 
 if __name__ == "__main__":
     wbu = WebScrapingUnito()
