@@ -1,4 +1,11 @@
 .env
 .idea
 faiss_index/
-./documenti/risposte.txt
+/documenti/corsi.txt
+/documenti/corsi_magistrale.txt
+/documenti/corsi_triennale.txt
+/documenti/iscriversi.txt
+/documenti/laurearsi.txt
+/documenti/psicologia.txt
+/documenti/studiare.txt
+/documenti/risposte.txt
