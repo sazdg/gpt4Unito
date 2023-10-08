@@ -7,24 +7,24 @@ import tqdm
 class WebScrapingUnito():
 
     def __init__(self):
-        self.progressBar: tqdm = None
-        self.documentazione = None
+        self._progressBar: tqdm = None
+        self._documentazione = None
 
     def loading(self, tempo=5):
         time.sleep(tempo)
-        self.progressBar.update(1)
+        self._progressBar.update(1)
 
 
     def start(self):
         file = open('./argomenti.json')
-        self.documentazione = json.load(file)
+        self._documentazione = json.load(file)
         nLinks = self.countLinks()
 
         self.resetFiles()
-        self.progressBar = tqdm.tqdm(total=nLinks)
+        self._progressBar = tqdm.tqdm(total=nLinks)
 
 
-        for tema in self.documentazione["argomenti"]:
+        for tema in self._documentazione["argomenti"]:
             argomento = tema["titolo"]
             for siti in tema["links"]:
                 descrizione = siti["descrizione"]
@@ -33,19 +33,19 @@ class WebScrapingUnito():
                 # self.saveTextFromUrl(argomento, descrizione, url) # TODO decommentare per scraping
                 self.loading(1)
 
-        self.progressBar.close()
-        self.progressBar = None
+        self._progressBar.close()
+        self._progressBar = None
 
     def countLinks(self):
         l = 0
-        if self.documentazione is not None:
-            for link in self.documentazione["argomenti"]:
+        if self._documentazione is not None:
+            for link in self._documentazione["argomenti"]:
                 l += len(link["links"])
         return l
 
     def resetFiles(self):
-        if self.documentazione is not None:
-            for tema in self.documentazione["argomenti"]:
+        if self._documentazione is not None:
+            for tema in self._documentazione["argomenti"]:
                 argomento = tema["titolo"]
                 file = open(f'documenti/{argomento}.txt', 'w')
                 file.close()
@@ -71,15 +71,3 @@ if __name__ == "__main__":
 
 #aggiungere delay per non rischiare di essere bloccati dal server
 
-#otteniamo le informazioni su internet, pulisce il testo
-# URL = "https://www.didattica-cps.unito.it/do/home.pl/View?doc=Laurearsi/tesi_laurea.html"
-
-#argomento = 'tesi_laurea'
-#page = requests.get(URL)
-#soup = BeautifulSoup(page.text, features='lxml')
-
-
-#file = open(f'documenti/{argomento}.txt', 'w', encoding='utf-8')
-#for div in soup.findAll('div', class_='card'):
-    #div = div.get_text().strip().replace(' ', ' ').replace('keyboard_arrow_down', '')
-    #file.write(div)
