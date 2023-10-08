@@ -20,7 +20,7 @@ class WebScrapingUnito():
         self.documentazione = json.load(file)
         nLinks = self.countLinks()
 
-        #self.resetFiles()
+        self.resetFiles()
         self.progressBar = tqdm.tqdm(total=nLinks)
 
 
@@ -29,14 +29,8 @@ class WebScrapingUnito():
             for siti in tema["links"]:
                 descrizione = siti["descrizione"]
                 url = siti["link"]
-                # decommentare per scraping
-                #page = requests.get(url)
-                #soup = BeautifulSoup(page.text, features='lxml')
-                #file = open(f'documenti/{argomento}.txt', 'w', encoding='utf-8')
-                #testo = soup.get_text().strip().replace(' ', ' ').replace('keyboard_arrow_down', '').replace('arrow_drop_down', '')
-                #file.write(f"\n$${argomento}$$\n" + testo + "\n\n\n")
-                #file.close()
 
+                # self.saveTextFromUrl(argomento, descrizione, url) # TODO decommentare per scraping
                 self.loading(1)
 
         self.progressBar.close()
@@ -58,6 +52,17 @@ class WebScrapingUnito():
             return True
         else:
             return False
+
+    def saveTextFromUrl(self, myArgomento, myDescrizione, myUrl):
+        page = requests.get(myUrl)
+        soup = BeautifulSoup(page.text, features='lxml')
+        file = open(f'documenti/{myArgomento}.txt', 'w', encoding='utf-8')
+        testo = soup.get_text()
+        file.write(f"\n$${myArgomento}$$\n" + self.cleanText(testo) + "\n\n\n")
+        file.close()
+
+    def cleanText(self, text):
+        return text.strip().replace(' ', ' ').replace('keyboard_arrow_down', '').replace('arrow_drop_down', '')
 
 
 if __name__ == "__main__":
