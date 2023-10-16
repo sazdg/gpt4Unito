@@ -1,4 +1,4 @@
-# Argomento
+# AI 4 UNITO
 GPT 4 Unito with LangChain
 
 # Environment Setup
@@ -28,6 +28,6 @@ python main_falcon.py
 
 
 modelli sperimentati:
+* google/flan-t5-large, temperature:0.9, max_new_tokens:250 (il migliore)
 * tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000
-* <li>google/flan-t5-large, temperature:0.9, max_new_tokens:250
 

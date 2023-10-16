@@ -25,7 +25,7 @@ class AskHuggingFace:
         documents = getObjDocuments(self._nome_file)
         text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
         docs = text_splitter.split_documents(documents)
-
+        print(docs[0])
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
         db = FAISS.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
@@ -67,7 +67,7 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('tiiuae/falcon-7b-instruct', 0.9, 2000, "tesi_laurea.txt")#'"psicologia.txt")
+        hf = AskHuggingFace('google/flan-t5-large', 0.9, 250, "psicologia.txt")#'"psicologia.txt")
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')

@@ -56,6 +56,11 @@ class WebScrapingUnito():
     def saveTextFromUrl(self, myArgomento, myDescrizione, myUrl):
         page = requests.get(myUrl)
         soup = BeautifulSoup(page.text, features='lxml')
+        for menu in soup.find('div', class_='pageBody'):
+            try:
+                menu.extract()
+            except:
+                pass
         file = open(f'documenti/{myArgomento}.txt', 'w', encoding='utf-8')
         testo = soup.get_text()
         file.write(f"\n$${myArgomento}$$\n" + self.cleanText(testo) + "\n\n\n")
