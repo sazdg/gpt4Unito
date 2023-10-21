@@ -1,3 +1,4 @@
+from langchain.chains import RetrievalQA
 
 from about_pdf import getObjDocuments
 from dotenv import load_dotenv
@@ -7,6 +8,7 @@ import os
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
+from langchain.vectorstores import Chroma
 from langchain.chains.question_answering import load_qa_chain
 
 class AskHuggingFace:
@@ -23,12 +25,12 @@ class AskHuggingFace:
         load_dotenv()
         # Split su numero di caratteri
         documents = getObjDocuments(self._nome_file)
-        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        text_splitter = CharacterTextSplitter(chunk_size=600, chunk_overlap=150)
         docs = text_splitter.split_documents(documents)
-        print(docs[0])
+
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
-        db = FAISS.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
+        db = Chroma.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
         # database del documento, chunks in vectorstores
 
         huggingfacehub_api_token = os.environ['HUGGINGFACEHUB_API_TOKEN']
@@ -37,7 +39,16 @@ class AskHuggingFace:
                              repo_id=self._repo_id,
                              model_kwargs={"temperature": self._temperatura, "max_new_tokens": self._max_tokens, "num_return_sequences": 1})
 
-        chain = load_qa_chain(llm, chain_type="stuff")
+        # prepare stuff prompt template
+        template = """Answer the question as truthfully as possible using the provided text, and if the answer is not contained within the text below, say "Non lo so my lady"
+        Context:{context}""".strip()
+
+        #prompt = PromptTemplate(
+        #    input_variables=["context", "question"],
+        #    template=template
+        #)
+        prompt = PromptTemplate.from_template(template)
+        #chain = load_qa_chain(llm, chain_type="stuff")
 
         keepAsking = True
         while keepAsking:
@@ -45,10 +56,24 @@ class AskHuggingFace:
             if self._query == "esci":
                 break
             elif self._query != "":
+
                 docs = db.similarity_search(self._query)
                 print(docs)
                 inizio = time.time()
-                risposta = chain.run(input_documents=docs, question=self._query)
+                p = prompt.format(context=docs)
+                #prompt.format(query=self._query, context=docs)
+                print(p)
+                #copingchain = load_qa_chain(llm, chain_type="stuff", verbose=True)
+                chain = RetrievalQA.from_chain_type(
+                    llm=llm,
+                    chain_type="stuff",
+                    retriever=db.as_retriever(),
+                    return_source_documents=True,
+                    chain_type_kwargs={"prompt": prompt}
+                )
+                risposta = chain(self._query)
+                risposta = risposta['result']
+                #risposta = chain.run(input_documents=docs, question=self._query)
                 print(risposta)
                 fine = time.time() - inizio
 
@@ -67,7 +92,7 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('google/flan-t5-large', 0.9, 250, "psicologia.txt")#'"psicologia.txt")
+        hf = AskHuggingFace('google/flan-t5-xxl', 0.9, 250, "psicologia.txt")#'"psicologia.txt")
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
