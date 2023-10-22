@@ -9,6 +9,9 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 
+from langdetect import detect_langs
+from Traduttore import Traduttore
+
 class AskHuggingFace:
 
     def __init__(self, modello, temp, tokens, file):
@@ -38,7 +41,7 @@ class AskHuggingFace:
         load_dotenv()
         # Split su numero di caratteri
         documents = getObjDocuments(self.NomeFile())
-        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=500, chunk_overlap=50, is_separator_regex=False)
+        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=600, chunk_overlap=100, is_separator_regex=False)
         docs = text_splitter.split_documents(documents)
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
@@ -66,8 +69,13 @@ class AskHuggingFace:
                 print(chunk)
                 inizio = time.time()
                 risposta = chain.run(input_documents=chunk, question=self.Query())
-                print(risposta)
+                lingue = detect_langs(risposta)
                 fine = time.time() - inizio
+                if 'en' in lingue.keys():
+                    t = Traduttore('en', 'it')
+                    risposta = t.traduci(risposta)
+
+                print(risposta)
 
                 file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
                 minuti, secondi = divmod(fine, 60)
@@ -84,7 +92,7 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('google/flan-t5-base', 0.5, 200, "psicologia.txt")#'"psicologia.txt")+
+        hf = AskHuggingFace('google/flan-t5-xxl', 0.1, 200, "psicologia.txt")#'"psicologia.txt")+
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')

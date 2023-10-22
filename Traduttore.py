@@ -5,6 +5,11 @@ class Traduttore():
         self._lingua_output = None
         self.translator = Translator(to_lang=self._lingua_output, from_lang=self._lingua_input)
 
+    def __init__(self, in_lingua, out_lingua):
+        self._lingua_input = in_lingua
+        self._lingua_output = out_lingua
+        self.translator = Translator(to_lang=self._lingua_output, from_lang=self._lingua_input)
+
     def setLinguaInput(self, linguaInput):
         self._lingua_input = linguaInput
 

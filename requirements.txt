@@ -28,3 +28,5 @@ sentence_transformers=2.2.2
 pypdf~=3.16.2
 tqdm~=4.65.0
 multipledispatch
+langdetect
+translate
