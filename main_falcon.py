@@ -25,7 +25,7 @@ class AskHuggingFace:
         load_dotenv()
         # Split su numero di caratteri
         documents = getObjDocuments(self._nome_file)
-        text_splitter = CharacterTextSplitter(chunk_size=600, chunk_overlap=150)
+        text_splitter = CharacterTextSplitter(separator='\n', chunk_size=550, chunk_overlap=50)
         docs = text_splitter.split_documents(documents)
 
         # open source embeddings supportato da langchain
@@ -39,15 +39,12 @@ class AskHuggingFace:
                              repo_id=self._repo_id,
                              model_kwargs={"temperature": self._temperatura, "max_new_tokens": self._max_tokens, "num_return_sequences": 1})
 
-        # prepare stuff prompt template
-        template = """Answer the question as truthfully as possible using the provided text, and if the answer is not contained within the text below, say "Non lo so my lady"
-        Context:{context}""".strip()
+
 
         #prompt = PromptTemplate(
-        #    input_variables=["context", "question"],
-        #    template=template
+        #    input_variables=["context"],
+        #    template=template,
         #)
-        prompt = PromptTemplate.from_template(template)
         #chain = load_qa_chain(llm, chain_type="stuff")
 
         keepAsking = True
@@ -60,20 +57,20 @@ class AskHuggingFace:
                 docs = db.similarity_search(self._query)
                 print(docs)
                 inizio = time.time()
-                p = prompt.format(context=docs)
-                #prompt.format(query=self._query, context=docs)
-                print(p)
+                #prompt = prompt.format(context=docs)ù
+                print(docs[0].page_content)
+                # prepare stuff prompt template
+                template = f"""Answer the question as truthfully as possible using the provided text, and if the answer is not contained within the text below, say "Non lo so Sara"
+                        Context:{docs[0].page_content}""".strip()
+                prompt = PromptTemplate.from_template(template)
+                #prompt.format(context=docs[0].page_content)
+                chain = LLMChain(prompt=prompt, llm=llm)
+                #risposta = chain.run(self._query)
+
+                #print(p)
                 #copingchain = load_qa_chain(llm, chain_type="stuff", verbose=True)
-                chain = RetrievalQA.from_chain_type(
-                    llm=llm,
-                    chain_type="stuff",
-                    retriever=db.as_retriever(),
-                    return_source_documents=True,
-                    chain_type_kwargs={"prompt": prompt}
-                )
-                risposta = chain(self._query)
-                risposta = risposta['result']
-                #risposta = chain.run(input_documents=docs, question=self._query)
+
+                risposta = chain.run(input_documents=docs, question=self._query, prompt=prompt)
                 print(risposta)
                 fine = time.time() - inizio
 
