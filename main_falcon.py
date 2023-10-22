@@ -1,4 +1,4 @@
-
+from multipledispatch import dispatch
 from about_pdf import getObjDocuments
 from dotenv import load_dotenv
 import time
@@ -17,15 +17,29 @@ class AskHuggingFace:
         self._temperatura = temp
         self._max_tokens = tokens
         self._nome_file = file
+    def NomeModello(self):
+        return self._repo_id
 
+    @dispatch()
+    def Query(self):
+        return self._query
+
+    @dispatch(str)
+    def Query(self, domanda):
+        self._query = domanda
+    def Temperatura(self):
+        return self._temperatura
+    def MaxTokens(self):
+        return self._max_tokens
+    def NomeFile(self):
+        return self._nome_file
     def main(self):
 
         load_dotenv()
         # Split su numero di caratteri
-        documents = getObjDocuments(self._nome_file)
-        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        documents = getObjDocuments(self.NomeFile())
+        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=500, chunk_overlap=50, is_separator_regex=False)
         docs = text_splitter.split_documents(documents)
-        print(docs[0])
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
         db = FAISS.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
@@ -34,28 +48,31 @@ class AskHuggingFace:
         huggingfacehub_api_token = os.environ['HUGGINGFACEHUB_API_TOKEN']
 
         llm = HuggingFaceHub(huggingfacehub_api_token=huggingfacehub_api_token,
-                             repo_id=self._repo_id,
-                             model_kwargs={"temperature": self._temperatura, "max_new_tokens": self._max_tokens, "num_return_sequences": 1})
+                             repo_id=self.NomeModello(),
+                             model_kwargs={"temperature": self.Temperatura(), "max_new_tokens": self.MaxTokens(), "num_return_sequences": 1})
 
+  
         chain = load_qa_chain(llm, chain_type="stuff")
 
         keepAsking = True
         while keepAsking:
-            self._query = input("Inserisci la domanda: ")
-            if self._query == "esci":
+            domanda = input("Inserisci la domanda: ")
+            self.Query(domanda)
+            if self.Query() == "esci":
                 break
-            elif self._query != "":
-                docs = db.similarity_search(self._query)
-                print(docs)
+            elif self.Query() != "":
+
+                chunk = db.similarity_search(self.Query())
+                print(chunk)
                 inizio = time.time()
-                risposta = chain.run(input_documents=docs, question=self._query)
+                risposta = chain.run(input_documents=chunk, question=self.Query())
                 print(risposta)
                 fine = time.time() - inizio
 
                 file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
                 minuti, secondi = divmod(fine, 60)
                 file_risposta.write(
-                    f"Domanda: {self._query}\nRisposta: {risposta}\n({self._repo_id}, temperature:{self._temperatura}, max_new_tokens:{self._max_tokens}, tempo: {int(minuti)} minuti e {int(secondi)} secondi)\n\n")
+                    f"Domanda: {self.Query()}\nRisposta: {risposta}\n({self.NomeModello()}, temperature:{self.Temperatura()}, max_new_tokens:{self.MaxTokens()}, tempo: {int(minuti)} minuti e {int(secondi)} secondi)\n\n")
                 file_risposta.close()
                 print('\n')
             else:
@@ -67,11 +84,11 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('google/flan-t5-large', 0.9, 250, "psicologia.txt")#'"psicologia.txt")
+        hf = AskHuggingFace('google/flan-t5-base', 0.5, 200, "psicologia.txt")#'"psicologia.txt")+
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
         file_risposta.write(
-            f"Domanda: {hf._query}\nERRORE: {ve}\n({hf._repo_id}, temperature:{hf._temperatura}, max_new_tokens:{hf._max_tokens})\n\n")
+            f"Domanda: {hf.Query()}\nERRORE: {ve}\n({hf.NomeModello()}, temperature:{hf.Temperatura()}, max_new_tokens:{hf.MaxTokens()})\n\n")
         file_risposta.close()
         print(ve)

@@ -28,6 +28,9 @@ python main_falcon.py
 
 
 modelli sperimentati:
-* google/flan-t5-large, temperature:0.9, max_new_tokens:250 (il migliore)
-* tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000
+* google/flan-t5-xxl, temperature:0.1, max_new_tokens:512 (il migliore)
+* google/flan-t5-large, temperature:0.9, max_new_tokens:250 
+* google/flan-ul2, temperature:0.1, max_new_tokens:250
+* tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000 (in inglese e prende da internet)
+* EleutherAI/gpt-neox-20b, temperature:0.1, max_new_tokens: 200 (risponde male e troppo)
 
