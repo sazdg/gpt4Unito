@@ -9,7 +9,7 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 
-from langdetect import detect_langs
+import langid
 from Traduttore import Traduttore
 
 class AskHuggingFace:
@@ -41,7 +41,7 @@ class AskHuggingFace:
         load_dotenv()
         # Split su numero di caratteri
         documents = getObjDocuments(self.NomeFile())
-        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=600, chunk_overlap=100, is_separator_regex=False)
+        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=550, chunk_overlap=50, is_separator_regex=False)
         docs = text_splitter.split_documents(documents)
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
@@ -69,10 +69,11 @@ class AskHuggingFace:
                 print(chunk)
                 inizio = time.time()
                 risposta = chain.run(input_documents=chunk, question=self.Query())
-                lingue = detect_langs(risposta)
                 fine = time.time() - inizio
-                if 'en' in lingue.keys():
-                    t = Traduttore('en', 'it')
+                lingua = langid.classify(risposta)
+                if lingua[0] != 'it':
+                    print(f'detected {lingua[0]}: ' + risposta)
+                    t = Traduttore(lingua[0], 'it')
                     risposta = t.traduci(risposta)
 
                 print(risposta)
