@@ -13,7 +13,7 @@ from huggingface_hub import hf_hub_download
 from langchain.llms import HuggingFaceHub
 
 
-loader = TextLoader('./documenti/tesi_laurea.txt')
+loader = TextLoader('../documenti/tesi_laurea.txt')
 data = loader.load()
 
 text_Splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=0)
@@ -53,7 +53,7 @@ llm = LlamaCpp(
     n_ctx=1024,
     verbose=False,
 )
-query = "Cosa devi fare per laurearmi?"
+query = input("Inserisci la domanda: ")
 docs = docsearch.similarity_search(query)
 
 chain = load_qa_chain(llm, chain_type="stuff")

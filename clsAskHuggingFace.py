@@ -10,7 +10,7 @@ from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 
 import langid
-from Traduttore import Traduttore
+from clsTraduttore import Traduttore
 
 class AskHuggingFace:
 
@@ -70,6 +70,7 @@ class AskHuggingFace:
                 inizio = time.time()
                 risposta = chain.run(input_documents=chunk, question=self.Query())
                 fine = time.time() - inizio
+
                 lingua = langid.classify(risposta)
                 if lingua[0] != 'it':
                     print(f'detected {lingua[0]}: ' + risposta)
@@ -93,7 +94,7 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('google/flan-t5-xxl', 0.1, 200, "psicologia.txt")#'"psicologia.txt")+
+        hf = AskHuggingFace('google/flan-t5-xxl', 0.1, 512, "tesi_laurea.txt")#'"psicologia.txt")+
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')

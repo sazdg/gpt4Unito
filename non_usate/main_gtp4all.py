@@ -30,7 +30,7 @@ faiss_index = FAISS.from_texts(texts, embeddings)
 faiss_index.save_local("./faiss_index/")
 
 
-faiss_index = FAISS.load_local("./faiss_index/", embeddings)
+faiss_index = FAISS.load_local("../faiss_index/", embeddings)
 
 
 query = input("Inserisci la domanda: ")
@@ -54,7 +54,7 @@ llm_chain = LLMChain(prompt=prompt, llm=llm)
 inizio = time.time()
 risposta_finale = llm_chain.run(query)
 fine = time.time() - inizio
-file_risposta = open("documenti/risposte.txt",'a',encoding='utf-8')
+file_risposta = open("../documenti/risposte.txt", 'a', encoding='utf-8')
 minuti, secondi = divmod(fine, 60)
 file_risposta.write(f"domanda: {query}\nrisposta: {risposta_finale}\nGPT4ALL\ntempo: {int(minuti)} minuti e {int(secondi)} secondi\n\n")
 file_risposta.close()

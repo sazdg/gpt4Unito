@@ -29,7 +29,7 @@ pinecone.init(
 index_name = "langchainpinecone"
 
 # Carica il testo dal file 'psicologia.txt'
-with open('documenti/psicologia.txt', 'r', encoding='utf-8') as file:
+with open('../documenti/psicologia.txt', 'r', encoding='utf-8') as file:
     testo_psicologia = file.read()
 
 # Scarica il modello Llama2
@@ -53,13 +53,13 @@ llm = LlamaCpp(
 docsearch = None
 # Inizializza docsearch dopo la creazione del modello
 #docsearch = Pinecone.from_texts(list(testo_psicologia), embeddings, index_name=index_name)  # Usa testo_psicologia direttamente
-loader = TextLoader("./documenti/psicologia.txt")
+loader = TextLoader("../documenti/psicologia.txt")
 psicologia = loader.load()
 txt = CharacterTextSplitter(chunk_size=1500, chunk_overlap=100)
 documents = txt.split_documents(psicologia)
 docsearch = FAISS.from_documents(documents, embeddings)
-query = "Cosa è la psicologia cognitiva?"
-print(query)
+query = input("Inserisci la domanda: ")
+
 # Esegui una ricerca di similarità con Pinecone
 docs = docsearch.similarity_search(query)
 print(docs)

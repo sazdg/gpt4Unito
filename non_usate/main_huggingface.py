@@ -35,7 +35,7 @@ def main():
 
     fine = time.time() - inizio
 
-    file_risposta = open("documenti/risposte.txt",'a',encoding='utf-8')
+    file_risposta = open("../documenti/risposte.txt", 'a', encoding='utf-8')
     minuti, secondi = divmod(fine, 60)
     file_risposta.write(f"domanda: {query}\nrisposta: {risposta}\nHUGGING FACE {repo_id}\ntempo: {int(minuti)} minuti e {int(secondi)} secondi\n\n")
     file_risposta.close()
