@@ -21,13 +21,14 @@ python clsWebScrapingUnito.py
 ```
 
 
-script con modello
+due script per avviare la chat con il modello
 ```shell
 python clsAskHuggingFace.py
+python Pinecone.py
 ```
 
 
-modelli sperimentati:
+modelli sperimentati con successo:
 * google/flan-t5-xxl, temperature:0.1, max_new_tokens:512 (il migliore)
 * google/flan-t5-large, temperature:0.9, max_new_tokens:250 
 * google/flan-ul2, temperature:0.1, max_new_tokens:250

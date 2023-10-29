@@ -13,15 +13,12 @@ pinecone-client~=2.2.1
 gpt4all~=1.0.8
 sentence_transformers
 
-#lettura pagine html
+#clsWebScrapingUnito
 requests~=2.31.0
 BeautifulSoup4~=4.12.2
 lxml~=4.9.3
 
-#main_bard
-bardapi~=0.1.32
-
-#main_huggingface
+#clsAskHuggingFace
 #langchain~=0.0.300
 huggingface_hub=0.16.4
 sentence_transformers=2.2.2

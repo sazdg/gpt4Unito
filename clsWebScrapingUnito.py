@@ -31,6 +31,7 @@ class WebScrapingUnito():
                 url = siti["link"]
 
                 # self.saveTextFromUrl(argomento, descrizione, url) # TODO decommentare per scraping
+                # vedi elenco siti su argomenti.json
                 self.loading(1)
 
         self._progressBar.close()
