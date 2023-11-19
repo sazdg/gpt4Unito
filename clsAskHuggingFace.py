@@ -61,7 +61,7 @@ class AskHuggingFace:
         while keepAsking:
             domanda = input("Inserisci la domanda: ")
             self.Query(domanda)
-            if self.Query() == "esci":
+            if self.Query() == "esci" or self.Query() == "exit" or self.Query() == "quit":
                 break
             elif self.Query() != "":
 
@@ -94,7 +94,7 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('google/flan-t5-xxl', 0.1, 512, "tesi_laurea.txt")#'"psicologia.txt")+
+        hf = AskHuggingFace('gpt2', 0.7, 250, "cps_1.pdf")#'"psicologia.txt")+ "tesi_laurea.txt"
         hf.main()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')

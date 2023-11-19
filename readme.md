@@ -30,6 +30,7 @@ python Pinecone.py
 
 modelli sperimentati con successo:
 * google/flan-t5-xxl, temperature:0.1, max_new_tokens:512 (il migliore)
+* HuggingFaceH4/zephyr-7b-beta', temperatura:0.7, max_new_tokens:256 (buono)
 * google/flan-t5-large, temperature:0.9, max_new_tokens:250 
 * google/flan-ul2, temperature:0.1, max_new_tokens:250
 * tiiuae/falcon-7b-instruct, temperature:0.9, max_new_tokens:2000 (in inglese e prende da internet)
