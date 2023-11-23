@@ -1,4 +1,5 @@
 from translate import Translator
+from textwrap import wrap
 class Traduttore():
     def __init__(self):
         self._lingua_input = None
@@ -23,7 +24,14 @@ class Traduttore():
         return self._lingua_output
 
     def traduci(self, testo):
-        translation = self.translator.translate(testo)
+        translation = ''
+        if type(testo) == str:
+            translation = self.translator.translate(testo)
+        elif type(testo) == list:
+            for t in testo:
+                translation += self.traduci(t)
         return translation
 
-
+    def splitta(self, testoLungo):
+        lista = wrap(testoLungo, 500)
+        return lista
