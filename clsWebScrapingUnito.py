@@ -30,7 +30,7 @@ class WebScrapingUnito():
                 descrizione = siti["descrizione"]
                 url = siti["link"]
 
-                # self.saveTextFromUrl(argomento, descrizione, url) # TODO decommentare per scraping
+                self.saveTextFromUrl(argomento, descrizione, url) # TODO decommentare per scraping
                 # vedi elenco siti su argomenti.json
                 self.loading(1)
 
@@ -48,7 +48,7 @@ class WebScrapingUnito():
         if self._documentazione is not None:
             for tema in self._documentazione["argomenti"]:
                 argomento = tema["titolo"]
-                file = open(f'documenti/{argomento}.txt', 'w')
+                file = open(f'documenti/documentazioneUnito.txt', 'w') #{argomento}.txt', 'w')
                 file.close()
             return True
         else:
@@ -57,13 +57,15 @@ class WebScrapingUnito():
     def saveTextFromUrl(self, myArgomento, myDescrizione, myUrl):
         page = requests.get(myUrl)
         soup = BeautifulSoup(page.text, features='lxml')
-        for menu in soup.find('div', class_='pageBody'):
-            try:
+        try: # cancellare il menù
+            for menu in soup.find('div', class_='context-menu-wrapper'):
                 menu.extract()
-            except:
-                pass
-        file = open(f'documenti/{myArgomento}.txt', 'w', encoding='utf-8')
-        testo = soup.get_text()
+        except:
+            pass
+        # open(f'documenti/{myArgomento}.txt', 'w', encoding='utf-8')
+        testo = soup.get_text().strip().replace(' ', ' ').replace('keyboard_arrow_down', '').replace(
+                    'arrow_drop_down', '')
+        file = open(f'documenti/documentazioneUnito.txt', 'a', encoding='utf-8')
         file.write(f"\n$${myArgomento}$$\n" + self.cleanText(testo) + "\n\n\n")
         file.close()
 
@@ -75,5 +77,5 @@ if __name__ == "__main__":
     wbu = WebScrapingUnito()
     wbu.start()
 
-#aggiungere delay per non rischiare di essere bloccati dal server
+#aggiunto delay per non rischiare di essere bloccati dal server
 

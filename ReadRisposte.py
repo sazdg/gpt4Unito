@@ -16,6 +16,11 @@ class ReadRisposte():
         for mll in modelli.keys():
             lista += mll + ' ' + str(modelli[mll]) + '\n'
         return lista
+
+    def GetAffidabilitaModelli(self):
+        # TODO calcolo risposte corrette/scorrette
+        return -1
+
     def conta(self):
         file = open(f'documenti/risposte.txt', 'r')
         for risp in file:
