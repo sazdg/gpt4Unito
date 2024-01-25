@@ -1,6 +1,6 @@
 import os
 
-from about_pdf import getRawTest
+from about_pdf import getRawText
 from dotenv import load_dotenv
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -10,7 +10,7 @@ from langchain.llms import OpenAI
 
 load_dotenv()
 
-raw_text = getRawTest()
+raw_text = getRawText()
 
 # Split su numero di caratteri
 text_splitter = CharacterTextSplitter(

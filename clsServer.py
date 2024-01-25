@@ -1,13 +1,28 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from clsAskHuggingFace import AskHuggingFace
 import json
+
 class Server(BaseHTTPRequestHandler):
-	def __init__(self):
-		self._askUnito = AskHuggingFace()
-		self._askUnito.Run()
+
+	def initModello(self):
+		self._askUnito = AskHuggingFace('HuggingFaceH4/zephyr-7b-beta', 0.7, 250, 'tesi_laurea.txt', False)
+		self._askUnito.Start()
+
+	def do_OPTIONS(self):
+		self.send_response(200)
+		self.send_header('Content-Type', 'application/json'),
+		self.send_header('Access-Control-Allow-Origin', '*')
+		self.send_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+		self.send_header("Access-Control-Allow-Headers", "Content-Type")
+		self.end_headers()
+		self.do_GET()
+
 	def set_headers(self):
 		self.send_response(200)
 		self.send_header('Content-type', 'application/json')
+		self.send_header('Access-Control-Allow-Origin', '*')
+		self.send_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+		self.send_header("Access-Control-Allow-Headers", "Content-Type")
 		self.end_headers()
 
 	def do_GET(self):
@@ -19,9 +34,10 @@ class Server(BaseHTTPRequestHandler):
 			case 'question':
 				# question/{domanda}
 				if len(api) > 2:
-					self.wfile.write(json.dumps(({'question': api[2].replace('%20',' ')})).encode())
+					print(api[2].replace('%20',' '))
+					self.wfile.write(json.dumps(({'response': api[2].replace('%20',' ')})).encode())
 				else:
-					self.wfile.write(json.dumps(({'question': 'Nessuna domanda'})).encode())
+					self.wfile.write(json.dumps(({'response': 'Nessuna domanda'})).encode())
 
 	def do_POST(self):
 		self.set_headers()
@@ -32,10 +48,15 @@ class Server(BaseHTTPRequestHandler):
 		match api[1]:
 			case 'question':
 				if post_data['domanda']:
-					#self._askUnito.Run()
-					self.wfile.write(json.dumps(({'question': post_data['domanda'], 'risposta': 'TODO'})).encode())
+					#if self._askUnito is None:
+					#	self.initModello()
+					self._askUnito.Query(post_data['domanda'])
+					risposta = self._askUnito.Ask()
+					#risposta = "L'esame finale e la tesi sono presentati utilizzando il servizio online fornito dall'ateneo, denominato tesi online. Per ulteriori informazioni su come completare il processo, si consiglia di consultare l'Informativa per l'invio online delle tesi. Gli abstract della prova finale e della tesi saranno pubblicati nell'archivio pubblico del servizio online di tesi.  Nota importante: non saranno più consentite sostituzioni di tesi che sono state caricate in modo errato o richiedono modifiche oltre latermini previsti, eventuali sostituzioni saranno consentite, tramite il servizio online tesi, solo entro i termini previsti.  In sintesi: - Una volta caricato il file, lo studente non può apportare ulteriori modifiche; - Il servizio online tesi può apportare modifiche al file, su richiesta dello studente, solo entro le scadenze specificate; - Dopo le scadenze specificate, non saranno consentite ulteriori modifiche.  Per l'a.a. 2016-17 la finestra per la richiesta del ricorsoai professori è dal 2 ottobre al 9 ottobre 2017, e gli esami si terranno dal 16 ottobre al 26 ottobre"
+
+					self.wfile.write(json.dumps(({'question': post_data['domanda'], 'response': risposta})).encode())
 				else:
-					self.wfile.write(json.dumps(({'question': 'Nessuna domanda'})).encode())
+					self.wfile.write(json.dumps(({'question': 'Nessuna domanda', 'response': 'Nessuna risposta'})).encode())
 			case 'modello':
 				if post_data['modello']:
 					self.wfile.write(json.dumps(({'model': post_data['modello']})).encode())
@@ -51,7 +72,9 @@ class Server(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
 	try:
-		s = HTTPServer(('localhost', 8080), Server)
+		myServer = Server
+		s = HTTPServer(('localhost', 8080), myServer)
+		myServer.initModello(myServer) # TODO decommentare
 		print('Started http server')
 		s.serve_forever()
 	except KeyboardInterrupt:

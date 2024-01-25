@@ -15,13 +15,19 @@ from clsColors import Colors
 
 class AskHuggingFace:
 
-    def __init__(self, modello, temp, tokens, file):
+    def __init__(self, modello, temp, tokens, file, isTerminalMode):
         self._repo_id = modello
         self._query = ""
         self._temperatura = temp
         self._max_tokens = tokens
         self._nome_file = file
         self._risposta = ""
+        self._terminalMode: bool = isTerminalMode
+        self._keepAsking: bool = isTerminalMode
+        self._db = None
+        self._chain = None
+
+
     def NomeModello(self):
         return self._repo_id
 
@@ -41,8 +47,15 @@ class AskHuggingFace:
 
     def Risposta(self):
         return self._risposta
-    def Run(self):
-        print("Digest knowledge...")
+
+    def IsTerminalMode(self):
+        return self._terminalMode
+
+    def KeepAsking(self):
+        return self._keepAsking
+
+    def Start(self):
+        print('Digest knowledge...')
         # TODO: si può rendere più efficiente? Se già c'è in cache non fare il digest???
         load_dotenv()
         # Lista di documenti
@@ -52,72 +65,84 @@ class AskHuggingFace:
         docs = text_splitter.split_documents(documents)
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
-        db = FAISS.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
+        self._db = FAISS.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
         # database del documento, chunks in vectorstores
 
         huggingfacehub_api_token = os.environ['HUGGINGFACEHUB_API_TOKEN']
-        print("Initializing Hugging Face Hub")
+        print('Initializing Hugging Face Hub')
         llm = HuggingFaceHub(huggingfacehub_api_token=huggingfacehub_api_token,
                              repo_id=self.NomeModello(),
                              model_kwargs={"temperature": self.Temperatura(), "max_new_tokens": self.MaxTokens(), "num_return_sequences": 1})
 
-        chain = load_qa_chain(llm, chain_type="stuff")
+        self._chain = load_qa_chain(llm, chain_type="stuff")
+        print('Model ready')
+        if self.IsTerminalMode() is True:
+            while self.KeepAsking:
+                self.Query(input('Inserisci la domanda: '))
+                self.Ask()
 
-        keepAsking = True
-        while keepAsking:
-            domanda = input("Inserisci la domanda: ")
-            self.Query(domanda)
-            if self.Query() == "esci" or self.Query() == "exit" or self.Query() == "quit":
-                break
-            elif self.Query() != "":
 
-                chunk = db.similarity_search(self.Query())
-                print(f'{Colors.fg.cyan}Chunks: {chunk}')
-                inizio = time.time()
-                risposta = chain.run(input_documents=chunk, question=self.Query())
-                fine = time.time() - inizio
+    def Ask(self):
+        if self._db is None:
+            return 'Inizializzare gli oggetti prima di cominciare'
+        if self._chain is None:
+            return 'Inizializzare gli oggetti prima di cominciare'
 
-                if self.NomeModello() == "HuggingFaceH4/starchat-beta":
-                    print(f'{Colors.fg.green}Detected {self.nomeModello()} : {risposta}')
-                    if "<|system|>" in risposta:
-                        fine_risposta = risposta.index("<|system|>")
-                        risposta = risposta[0:fine_risposta].replace("<|end|>", "")
 
-                if "Question" in risposta:
-                    print(f'{Colors.fg.red}Detected Question in risposta: {risposta}')
-                    fine_risposta = risposta.index("Question")
-                    risposta = risposta[0:fine_risposta]
+        if self.Query() == 'esci' or self.Query() == 'exit' or self.Query() == 'quit':
+            self._keepAsking = False
+            return None
 
-                lingua = langid.classify(risposta)
-                if lingua[0] != 'it':
-                    print(f'{Colors.fg.yellow}Detected {lingua[0]}: ' + risposta)
-                    t = Traduttore(lingua[0], 'it')
-                    if len(risposta) > 500:
-                        risposte_lst = t.splitta(risposta)
-                        risposta = t.traduci(risposte_lst)
-                    else:
-                        risposta = t.traduci(risposta)
-                self._risposta = risposta
-                print(Colors.reset + risposta)
+        elif self.Query() != "":
 
+            chunk = self._db.similarity_search(self.Query())
+            print(f'{Colors.fg.cyan}Chunks: {chunk}')
+            inizio = time.time()
+            risposta = self._chain.run(input_documents=chunk, question=self.Query())
+            fine = time.time() - inizio
+
+            if self.NomeModello() == "HuggingFaceH4/starchat-beta":
+                print(f'{Colors.fg.green}Detected {self.nomeModello()} : {risposta}')
+                if "<|system|>" in risposta:
+                    fine_risposta = risposta.index("<|system|>")
+                    risposta = risposta[0:fine_risposta].replace("<|end|>", "")
+
+            if "Question" in risposta:
+                print(f'{Colors.fg.red}Detected Question in risposta: {risposta}')
+                fine_risposta = risposta.index("Question")
+                risposta = risposta[0:fine_risposta]
+
+            lingua = langid.classify(risposta)
+            if lingua[0] != 'it':
+                print(f'{Colors.fg.yellow}Detected {lingua[0]}: ' + risposta)
+                t = Traduttore(lingua[0], 'it')
+                if len(risposta) > 500:
+                    risposte_lst = t.splitta(risposta)
+                    risposta = t.traduci(risposte_lst)
+                else:
+                    risposta = t.traduci(risposta)
+            self._risposta = risposta
+            print(Colors.reset + risposta)
+
+            valutazione = 'None'
+            if self.IsTerminalMode():
                 valutazione = input('Risposta corretta? y ⎪ n\n')
-                file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
-                minuti, secondi = divmod(fine, 60)
-                file_risposta.write(
-                    f"Domanda: {self.Query()}\nRisposta: {self.Risposta()}\n({self.NomeModello()}, temperature:{self.Temperatura()}, max_new_tokens:{self.MaxTokens()}, tempo: {int(minuti)} minuti e {int(secondi)} secondi, valutazione:{valutazione})\n\n")
-                file_risposta.close()
-                print('\n')
-            else:
-                print('Nessuna domanda a cui rispondere...')
+            file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
+            minuti, secondi = divmod(fine, 60)
+            file_risposta.write(
+                f"Domanda: {self.Query()}\nRisposta: {self.Risposta()}\n({self.NomeModello()}, temperature:{self.Temperatura()}, max_new_tokens:{self.MaxTokens()}, tempo: {int(minuti)} minuti e {int(secondi)} secondi, valutazione:{valutazione})\n\n")
+            file_risposta.close()
+            print('\n')
 
-        del chain
-
+            return risposta
+        else:
+            return 'Nessuna domanda a cui rispondere...'
 
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('HuggingFaceH4/zephyr-7b-beta', 0.7, 250, 'appunti_psicologia_del_lavoro_2023.pdf')#'"psicologia.txt")+ "tesi_laurea.txt"
-        hf.Run()
+        hf = AskHuggingFace('HuggingFaceH4/zephyr-7b-beta', 0.7, 250, 'tesi_laurea_prova.txt', True)#'"psicologia.txt")+ "tesi_laurea.txt"
+        hf.Start()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
         file_risposta.write(
