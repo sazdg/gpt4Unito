@@ -1,9 +1,9 @@
-from multipledispatch import dispatch
-from about_pdf import getObjDocuments
-from dotenv import load_dotenv
 import time
-from langchain import HuggingFaceHub, PromptTemplate, LLMChain
 import os
+from multipledispatch import dispatch
+from about_pdf import getObjDocuments, getObjDirectory
+from dotenv import load_dotenv
+from langchain import HuggingFaceHub, PromptTemplate, LLMChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
@@ -54,12 +54,21 @@ class AskHuggingFace:
     def KeepAsking(self):
         return self._keepAsking
 
+    def getObjectDocument(self):
+        if self.NomeFile() != '':
+            print('Digest file...')
+            docs = getObjDocuments(self.NomeFile())
+        else:
+            print('Digest directory...')
+            docs = getObjDirectory()
+        return docs
+
     def Start(self):
-        print('Digest knowledge...')
-        # TODO: si può rendere più efficiente? Se già c'è in cache non fare il digest???
         load_dotenv()
-        # Lista di documenti
-        documents = getObjDocuments(self.NomeFile())
+
+        # Lista di chunks del documento
+        documents = self.getObjectDocument()
+
         # Split su numero di caratteri
         text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=550, chunk_overlap=50, is_separator_regex=False)
         docs = text_splitter.split_documents(documents)
@@ -76,18 +85,16 @@ class AskHuggingFace:
 
         self._chain = load_qa_chain(llm, chain_type="stuff")
         print('Model ready')
-        if self.IsTerminalMode() is True:
-            while self.KeepAsking:
+        if self.IsTerminalMode():
+            while self.KeepAsking():
                 self.Query(input('Inserisci la domanda: '))
                 self.Ask()
 
-
     def Ask(self):
         if self._db is None:
-            return 'Inizializzare gli oggetti prima di cominciare'
+            return 'Inizializzare vectorstores prima di cominciare'
         if self._chain is None:
-            return 'Inizializzare gli oggetti prima di cominciare'
-
+            return 'Inizializzare il modello prima di cominciare'
 
         if self.Query() == 'esci' or self.Query() == 'exit' or self.Query() == 'quit':
             self._keepAsking = False
@@ -96,7 +103,9 @@ class AskHuggingFace:
         elif self.Query() != "":
 
             chunk = self._db.similarity_search(self.Query())
-            print(f'{Colors.fg.cyan}Chunks: {chunk}')
+            if self.IsTerminalMode():
+                print(f'{Colors.fg.cyan}Chunks: {chunk}')
+
             inizio = time.time()
             risposta = self._chain.run(input_documents=chunk, question=self.Query())
             fine = time.time() - inizio
@@ -141,7 +150,14 @@ class AskHuggingFace:
 
 if __name__ == "__main__":
     try:
-        hf = AskHuggingFace('HuggingFaceH4/zephyr-7b-beta', 0.7, 250, 'tesi_laurea_prova.txt', True)#'"psicologia.txt")+ "tesi_laurea.txt"
+        # se passato nome file vuoto verrà letta la cartella completa
+        modelName = 'HuggingFaceH4/zephyr-7b-beta'
+        documentName = '' # 'prova.odt'
+        temperature = 0.7
+        tokens = 250
+        isDebugMode = True
+
+        hf = AskHuggingFace(modelName, temperature, tokens, documentName, isDebugMode)
         hf.Start()
     except ValueError as ve:
         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
