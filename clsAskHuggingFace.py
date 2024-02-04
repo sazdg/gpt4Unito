@@ -68,7 +68,8 @@ class AskHuggingFace:
 
         # Lista di chunks del documento
         documents = self.getObjectDocument()
-
+        if documents is None:
+            print('Non sono stati trovati documenti da indicizzare')
         # Split su numero di caratteri
         text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=550, chunk_overlap=50, is_separator_regex=False)
         docs = text_splitter.split_documents(documents)
@@ -148,20 +149,20 @@ class AskHuggingFace:
             return 'Nessuna domanda a cui rispondere...'
 
 
-if __name__ == "__main__":
-    try:
-        # se passato nome file vuoto verrà letta la cartella completa
-        modelName = 'HuggingFaceH4/zephyr-7b-beta'
-        documentName = '' # 'prova.odt'
-        temperature = 0.7
-        tokens = 250
-        isDebugMode = True
-
-        hf = AskHuggingFace(modelName, temperature, tokens, documentName, isDebugMode)
-        hf.Start()
-    except ValueError as ve:
-        file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
-        file_risposta.write(
-            f"Domanda: {hf.Query()}\nERRORE: {ve}\n({hf.NomeModello()}, temperature:{hf.Temperatura()}, max_new_tokens:{hf.MaxTokens()})\n\n")
-        file_risposta.close()
-        print(ve)
+# if __name__ == "__main__":
+#     try:
+#         # se passato nome file vuoto verrà letta la cartella completa
+#         modelName = 'HuggingFaceH4/zephyr-7b-beta'
+#         documentName = '' # 'prova.odt'
+#         temperature = 0.7
+#         tokens = 250
+#         isDebugMode = True
+#
+#         hf = AskHuggingFace(modelName, temperature, tokens, documentName, isDebugMode)
+#         hf.Start()
+#     except ValueError as ve:
+#         file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
+#         file_risposta.write(
+#             f"Domanda: {hf.Query()}\nERRORE: {ve}\n({hf.NomeModello()}, temperature:{hf.Temperatura()}, max_new_tokens:{hf.MaxTokens()})\n\n")
+#         file_risposta.close()
+#         print(ve)

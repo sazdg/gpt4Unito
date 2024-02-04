@@ -1,6 +1,7 @@
 .env
 .idea
 faiss_index/
-documenti/
 __pycache__/
-/webscraping_prova.py
+webscraping_prova.py
+documenti/risposte.txt
+documenti/caricati/
