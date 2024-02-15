@@ -1,7 +1,7 @@
 import time
 import os
 from multipledispatch import dispatch
-from about_pdf import getObjDocuments, getObjDirectory
+from ExtractFromDocuments import getObjDocuments, getObjDirectory
 from dotenv import load_dotenv
 from langchain import HuggingFaceHub, PromptTemplate, LLMChain
 from langchain.text_splitter import CharacterTextSplitter

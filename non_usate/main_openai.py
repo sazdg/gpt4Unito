@@ -1,6 +1,6 @@
 import os
 
-from about_pdf import getRawText
+from ExtractFromDocuments import getRawText
 from dotenv import load_dotenv
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter

@@ -2,7 +2,7 @@ import os
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from clsAskHuggingFace import AskHuggingFace
-from costanti import PATH_DIR_DOCUMENTS, FILE_NAME_TEST, CREDENZIALI
+from costanti import DIR_LOADED_DOCUMENTS, FILE_NAME_TEST, CREDENZIALI
 import json
 
 
@@ -13,9 +13,9 @@ class Server(BaseHTTPRequestHandler):
 		self._temperatura = temperature
 		self._tokens = tokens
 		self._nomeDocumento = documentname
-		#self._askUnito = None
-		self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
-		self._askUnito.Start()
+		self._askUnito = None
+		#self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
+		#self._askUnito.Start()
 
 	def do_OPTIONS(self):
 		self.send_response(200)
@@ -53,13 +53,6 @@ class Server(BaseHTTPRequestHandler):
 			case 'files':
 				files_caricati = self.getFilenamesFolder()
 				self.wfile.write(json.dumps(({'response': files_caricati, 'conta': len(files_caricati)})).encode('utf-8'))
-			case 'question':
-				# question/{domanda} NON UTILIZZATO
-				if len(api) > 2:
-					print(api[2].replace('%20', ' '))
-					self.wfile.write(json.dumps(({'response': api[2].replace('%20', ' ')})).encode('utf-8'))
-				else:
-					self.wfile.write(json.dumps(({'response': 'Nessuna domanda'})).encode('utf-8'))
 			case 'restart':
 				self._askUnito = None
 				self._askUnito = AskHuggingFace(self._nomeModello, self._temperatura, self._tokens, '', False)
@@ -111,7 +104,7 @@ class Server(BaseHTTPRequestHandler):
 
 		if len(api) >= 2:
 			nome_file = api[2].replace('%20', '_') # <--- Gets the name of the file
-			path_file = PATH_DIR_DOCUMENTS + '/' + nome_file
+			path_file = DIR_LOADED_DOCUMENTS + '/' + nome_file
 
 		if type(self.headers['Content-Length']) is not type(None):  # <--- Gets the size of data sent
 			leng_file = int(self.headers['Content-Length'])
@@ -139,9 +132,13 @@ class Server(BaseHTTPRequestHandler):
 				isUser = True
 		return isUser
 
-	def getFilenamesFolder(self):
-		files = []
-		files = os.listdir(PATH_DIR_DOCUMENTS)
+	def getFilenamesFolder(self, path=''):
+		try:
+			if path == '':
+				path = DIR_LOADED_DOCUMENTS
+			files = os.listdir(path)
+		except:
+			files = []
 		return files
 
 

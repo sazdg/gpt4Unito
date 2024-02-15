@@ -1,5 +1,5 @@
 
-class ReadRisposte():
+class clsReadRisposte():
     def __init__(self):
         self._num_modelli = 0
         self._modelli = {}
@@ -37,7 +37,7 @@ class ReadRisposte():
 
 if __name__ == "__main__":
     try:
-        rr = ReadRisposte()
+        rr = clsReadRisposte()
         rr.conta()
         print("Modelli testati: " + str(rr.getNumModelli()))
         print("Elenco modelli: " + str(rr.GetNomeModelli(False)))

@@ -65,7 +65,7 @@ class WebScrapingUnito():
         # open(f'documenti/{myArgomento}.txt', 'w', encoding='utf-8')
         testo = soup.get_text().strip()
         testo = self.cleanText(testo)
-        file = open(f'documenti/documentazioneUnito.txt', 'a', encoding='utf-8')
+        file = open(f'documenti/{myArgomento}.txt', 'a', encoding='utf-8')
         file.write(f"\n$${myArgomento}$$\n" + testo + "\n\n\n")
         file.close()
 

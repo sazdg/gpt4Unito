@@ -3,7 +3,7 @@ from langchain.callbacks.base import BaseCallbackManager
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.llms import GPT4All
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from about_pdf import getRawText
+from ExtractFromDocuments import getRawText
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 import time
