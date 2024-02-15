@@ -2,7 +2,7 @@ import os
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from clsAskHuggingFace import AskHuggingFace
-from costanti import PATH_DIR_DOCUMENTS, FILE_NAME_TEST
+from costanti import PATH_DIR_DOCUMENTS, FILE_NAME_TEST, CREDENZIALI
 import json
 
 
@@ -13,6 +13,7 @@ class Server(BaseHTTPRequestHandler):
 		self._temperatura = temperature
 		self._tokens = tokens
 		self._nomeDocumento = documentname
+		#self._askUnito = None
 		self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
 		self._askUnito.Start()
 
@@ -29,7 +30,7 @@ class Server(BaseHTTPRequestHandler):
 
 	def set_headers(self):
 		self.send_response(200)
-		self.send_header('Content-type', 'application/json, text/plain')
+		self.send_header('Content-type', 'application/json')
 		self.send_header('Access-Control-Allow-Origin', '*')
 		self.send_header('Access-Control-Allow-Methods', 'POST, GET, PUT, OPTIONS')
 		self.send_header("Access-Control-Allow-Headers", "Content-Type")
@@ -49,8 +50,11 @@ class Server(BaseHTTPRequestHandler):
 		match api[1]:
 			case 'ping':
 				self.wfile.write(json.dumps(({'response': 'pong'})).encode('utf-8'))
+			case 'files':
+				files_caricati = self.getFilenamesFolder()
+				self.wfile.write(json.dumps(({'response': files_caricati, 'conta': len(files_caricati)})).encode('utf-8'))
 			case 'question':
-				# question/{domanda}
+				# question/{domanda} NON UTILIZZATO
 				if len(api) > 2:
 					print(api[2].replace('%20', ' '))
 					self.wfile.write(json.dumps(({'response': api[2].replace('%20', ' ')})).encode('utf-8'))
@@ -61,6 +65,7 @@ class Server(BaseHTTPRequestHandler):
 				self._askUnito = AskHuggingFace(self._nomeModello, self._temperatura, self._tokens, '', False)
 				self._askUnito.Start()
 				print('Hugging Face Hub ripartito')
+				self.wfile.write(json.dumps(({'response': 'Restart completato'})).encode('utf-8'))
 
 	def do_POST(self):
 		self.set_headers()
@@ -70,10 +75,10 @@ class Server(BaseHTTPRequestHandler):
 		match api[1]:
 			case 'question':
 				if post_data['domanda']:
-								# if self._askUnito is None:
-								#	self.initModello()
-					self._askUnito.Query(post_data['domanda'])
-					risposta = self._askUnito.Ask()
+					risposta = 'Modello LLM non inizializzato, controllare e riprovare'
+					if self._askUnito is not None:
+						self._askUnito.Query(post_data['domanda'])
+						risposta = self._askUnito.Ask()
 
 					self.wfile.write(
 						json.dumps(({'question': post_data['domanda'], 'response': risposta})).encode('utf-8'))
@@ -90,6 +95,13 @@ class Server(BaseHTTPRequestHandler):
 					self.wfile.write(json.dumps(({'response': post_data['lingua']})).encode('utf-8'))
 				else:
 					self.wfile.write(json.dumps(({'response': 'Nessuna lingua scelta'})).encode('utf-8'))
+			case 'login':
+				username = post_data['usr']
+				password = post_data['pwd']
+				if self.checkCredenzialiLogin(username, password):
+					self.wfile.write(json.dumps(({'response': 'true'})).encode('utf-8'))
+				else:
+					self.wfile.write(json.dumps(({'response': 'false'})).encode('utf-8'))
 
 	def do_PUT(self):
 		self.set_file_headers()
@@ -116,9 +128,22 @@ class Server(BaseHTTPRequestHandler):
 					print(response)
 				except ValueError:
 					response = f'{path_file} cancellato per errori'
-					print(response)
+					print( 	response)
 					os.remove(path_file)
 			self.wfile.write(json.dumps(({'response': response})).encode('utf-8'))
+
+	def checkCredenzialiLogin(self, user, password):
+		isUser = False
+		if user.lower() in CREDENZIALI:
+			if CREDENZIALI[user.lower()] == password:
+				isUser = True
+		return isUser
+
+	def getFilenamesFolder(self):
+		files = []
+		files = os.listdir(PATH_DIR_DOCUMENTS)
+		return files
+
 
 # if __name__ == "__main__":
 # 	try:

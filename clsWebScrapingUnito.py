@@ -63,10 +63,10 @@ class WebScrapingUnito():
         except:
             pass
         # open(f'documenti/{myArgomento}.txt', 'w', encoding='utf-8')
-        testo = soup.get_text().strip().replace(' ', ' ').replace('keyboard_arrow_down', '').replace(
-                    'arrow_drop_down', '')
+        testo = soup.get_text().strip()
+        testo = self.cleanText(testo)
         file = open(f'documenti/documentazioneUnito.txt', 'a', encoding='utf-8')
-        file.write(f"\n$${myArgomento}$$\n" + self.cleanText(testo) + "\n\n\n")
+        file.write(f"\n$${myArgomento}$$\n" + testo + "\n\n\n")
         file.close()
 
     def cleanText(self, text):
