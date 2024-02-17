@@ -3,7 +3,7 @@ import os
 from multipledispatch import dispatch
 from ExtractFromDocuments import getObjDocuments, getObjDirectory
 from dotenv import load_dotenv
-from langchain import HuggingFaceHub, PromptTemplate, LLMChain
+from langchain import HuggingFaceHub
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
@@ -75,7 +75,7 @@ class AskHuggingFace:
         docs = text_splitter.split_documents(documents)
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
-        self._db = FAISS.from_documents(docs, embeddings) ## faiss è molto buono per cercare nei documenti
+        self._db = FAISS.from_documents(docs, embeddings)
         # database del documento, chunks in vectorstores
 
         huggingfacehub_api_token = os.environ['HUGGINGFACEHUB_API_TOKEN']

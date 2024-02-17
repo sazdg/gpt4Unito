@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
 	# se passato nome file vuoto verrà letta la cartella completa
 	modelName = 'HuggingFaceH4/zephyr-7b-beta'
-	documentName = ''  # 'prova.odt'
+	documentName = ''
 	temperature = 0.7
 	tokens = 250
 	isDebugMode = False

@@ -13,10 +13,9 @@ per ottenere l'API di hugging face andare sul sito > login utente
 in alto a destra nel menù utente > Settings > Access Tokens
 creare un uovo token con permesso di lettura
 
-due script per avviare la chat con il modello
+Per avviare il server:
 ```shell
-python clsAskHuggingFace.py
-python Pinecone.py
+python main.py
 ```
 
 # Risoluzione problemi Word

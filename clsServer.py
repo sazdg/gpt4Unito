@@ -14,8 +14,8 @@ class Server(BaseHTTPRequestHandler):
 		self._tokens = tokens
 		self._nomeDocumento = documentname
 		self._askUnito = None
-		#self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
-		#self._askUnito.Start()
+		self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
+		self._askUnito.Start()
 
 	def do_OPTIONS(self):
 		self.send_response(200)
@@ -146,7 +146,7 @@ class Server(BaseHTTPRequestHandler):
 # 	try:
 # 		myServer = Server
 # 		s = HTTPServer(('localhost', 8080), myServer)
-# 		myServer.initModello(myServer) # TODO decommentare
+# 		myServer.initModello(myServer)
 # 		print('Started http server')
 # 		s.serve_forever()
 # 	except KeyboardInterrupt:
