@@ -10,7 +10,7 @@ if __name__ == "__main__":
 	documentName = ''
 	temperature = 0.7
 	tokens = 250
-	isDebugMode = False
+	isDebugMode = True
 
 	if not isDebugMode:
 		try:

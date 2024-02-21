@@ -1,11 +1,10 @@
 
 class clsReadRisposte():
     def __init__(self):
-        self._num_modelli = 0
         self._modelli = {}
 
     def getNumModelli(self):
-        return self._num_modelli
+        return len(self._modelli)
 
     def GetNomeModelli(self, orderByKey):
         if orderByKey:
@@ -29,7 +28,6 @@ class clsReadRisposte():
                     i = risp.index('temperature')
                     nome_modello = risp[1:i-2]
                     if nome_modello not in self._modelli.keys():
-                        self._num_modelli += 1
                         self._modelli[nome_modello] = 1
                     else:
                         self._modelli[nome_modello] += 1

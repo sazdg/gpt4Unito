@@ -102,6 +102,10 @@ class AskHuggingFace:
             return None
 
         elif self.Query() != "":
+            # se la domanda non è in italiano la traduce
+            # perchè i documenti sono in italiano
+            queryTradotta = self.RilevaTraduci(self.Query())
+            self.Query(queryTradotta)
 
             chunk = self._db.similarity_search(self.Query())
             if self.IsTerminalMode():
@@ -122,16 +126,7 @@ class AskHuggingFace:
                 fine_risposta = risposta.index("Question")
                 risposta = risposta[0:fine_risposta]
 
-            lingua = langid.classify(risposta)
-            if lingua[0] != 'it':
-                print(f'{Colors.fg.yellow}Detected {lingua[0]}: ' + risposta)
-                t = Traduttore(lingua[0], 'it')
-                if len(risposta) > 500:
-                    risposte_lst = t.splitta(risposta)
-                    risposta = t.traduci(risposte_lst)
-                else:
-                    risposta = t.traduci(risposta)
-            self._risposta = risposta
+            self._risposta = self.RilevaTraduci(risposta)
             print(Colors.reset + risposta)
 
             valutazione = 'None'
@@ -148,6 +143,19 @@ class AskHuggingFace:
         else:
             return 'Nessuna domanda a cui rispondere...'
 
+
+    def RilevaTraduci(self, testo):
+        risposta = testo
+        lingua = langid.classify(testo)
+        if lingua[0] != 'it':
+            print(f'{Colors.fg.yellow}Detected {lingua[0]}: ' + testo)
+            t = Traduttore(lingua[0], 'it')
+            if len(testo) > 500:
+                risposte_lst = t.splitta(testo)
+                risposta = t.traduci(risposte_lst)
+            else:
+                risposta = t.traduci(testo)
+        return risposta
 
 # if __name__ == "__main__":
 #     try:
