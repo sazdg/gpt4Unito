@@ -51,10 +51,9 @@ while keepAsking:
     valutazione = input('Risposta corretta? y ⎪ n\n')
     minuti, secondi = divmod(fine, 60)
 
-    path_file_risposte = 'documenti/risposte.txt'
+    path_file_risposte = '../documenti/risposte.txt'
     file_risposta = open(path_file_risposte, 'a', encoding='utf-8')
-    file_risposta.write("domanda: "+query+"\n"+"risposta: "+risposta_finale )
     file_risposta.write(
-        f"Domanda: {query}\nRispsota: {risposta_finale}\n({nomeModello}, temperature:NULL, max_new_tokens:NULL), tempo: {int(minuti)} minuti e {int(secondi)} secondi, valutazione:{valutazione})\n\n")
+        f"Domanda: {query}\nRispsota: {risposta_finale}\n({nomeModello}, temperature:NULL, max_new_tokens:NULL, tempo: {int(minuti)} minuti e {int(secondi)} secondi, valutazione:{valutazione})\n\n")
 
     file_risposta.close()

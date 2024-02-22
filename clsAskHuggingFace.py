@@ -149,9 +149,9 @@ class AskHuggingFace:
             return 'Nessuna domanda a cui rispondere...'
 
     def RilevaTraduci(self, testo, linguaRichiesta):
-        print()
         risposta = testo
         lingua = langid.classify(testo)
+        print(f'{Colors.reset}Lingua rilevata: {lingua[0]}\nLingua richiesta: {linguaRichiesta}')
         if lingua[0] != linguaRichiesta:
             print(f'{Colors.fg.yellow}Detected {lingua[0]}: ' + testo)
             t = Traduttore(lingua[0], linguaRichiesta)

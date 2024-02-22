@@ -1,4 +1,4 @@
-from PyPDF2 import PdfReader
+import PyPDF2
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.document_loaders import UnstructuredODTLoader, UnstructuredPDFLoader, UnstructuredWordDocumentLoader, TextLoader
 from langchain.schema import Document
@@ -10,11 +10,12 @@ def getRawText(nome_file="") -> str:
 
 	if ".txt" in argomento:
 		# Leggi il contenuto del file di testo
-		with open(f'{DIR_ROOT_DOCUMENTS}/{argomento}', 'r', encoding='utf-8') as file:
+		with open(f'.{DIR_ROOT_DOCUMENTS}/{argomento}', 'r', encoding='utf-8') as file:
 			raw_text = file.read()
 
 	elif ".pdf" in argomento:
-		doc_reader = PdfReader(f'{DIR_ROOT_DOCUMENTS}/{argomento}')
+		file = open(f'.{DIR_ROOT_DOCUMENTS}/{argomento}', 'rb')
+		doc_reader = PyPDF2.PdfReader(file)
 		for i, page in enumerate(doc_reader.pages):
 			text = page.extract_text()
 			if text:
