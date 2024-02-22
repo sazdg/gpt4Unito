@@ -41,7 +41,7 @@ while keepAsking:
         break
 
     docs = docsearch.similarity_search(query)
-    template_risposta = chain.llm_chain.prompt.template
+
     # print(template_risposta)
     inizio = time.time()
     risposta_finale = chain.run(input_documents=docs,question=query)

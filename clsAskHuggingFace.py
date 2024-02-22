@@ -3,7 +3,9 @@ import os
 from multipledispatch import dispatch
 from ExtractFromDocuments import getObjDocuments, getObjDirectory
 from dotenv import load_dotenv
-from langchain import HuggingFaceHub
+#from langchain import HuggingFaceHub
+from langchain.llms.huggingface_hub import HuggingFaceHub
+from langchain.llms import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
@@ -13,8 +15,8 @@ import langid
 from clsTraduttore import Traduttore
 from clsColors import Colors
 
-class AskHuggingFace:
 
+class AskHuggingFace:
     def __init__(self, modello, temp, tokens, file, isTerminalMode):
         self._repo_id = modello
         self._query = ""
@@ -27,7 +29,6 @@ class AskHuggingFace:
         self._db = None
         self._chain = None
 
-
     def NomeModello(self):
         return self._repo_id
 
@@ -38,10 +39,13 @@ class AskHuggingFace:
     @dispatch(str)
     def Query(self, domanda):
         self._query = domanda
+
     def Temperatura(self):
         return self._temperatura
+
     def MaxTokens(self):
         return self._max_tokens
+
     def NomeFile(self):
         return self._nome_file
 
@@ -104,8 +108,9 @@ class AskHuggingFace:
         elif self.Query() != "":
             # se la domanda non è in italiano la traduce perchè i documenti sono in italiano
             linguaDiRisposta = langid.classify(self.Query())
-            queryTradotta = self.RilevaTraduci(self.Query(), 'it')
-            self.Query(queryTradotta)
+            print("Lingua della domanda: " + linguaDiRisposta[0])
+            #queryTradotta = self.RilevaTraduci(self.Query(), 'it')
+            #self.Query(queryTradotta)
 
             chunk = self._db.similarity_search(self.Query())
             if self.IsTerminalMode():
@@ -126,7 +131,7 @@ class AskHuggingFace:
                 fine_risposta = risposta.index("Question")
                 risposta = risposta[0:fine_risposta]
 
-            self._risposta = self.RilevaTraduci(risposta, linguaDiRisposta)
+            self._risposta = self.RilevaTraduci(risposta, linguaDiRisposta[0])
             print(Colors.reset + risposta)
 
             valutazione = 'None'
@@ -144,6 +149,7 @@ class AskHuggingFace:
             return 'Nessuna domanda a cui rispondere...'
 
     def RilevaTraduci(self, testo, linguaRichiesta):
+        print()
         risposta = testo
         lingua = langid.classify(testo)
         if lingua[0] != linguaRichiesta:

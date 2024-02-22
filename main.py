@@ -5,17 +5,18 @@ from clsServer import Server
 
 if __name__ == "__main__":
 
-	# se passato nome file vuoto verrà letta la cartella completa
+	# se passato nome file vuoto verrà letta la cartella "documenti/caricati"
 	modelName = 'HuggingFaceH4/zephyr-7b-beta'
 	documentName = ''
 	temperature = 0.7
 	tokens = 250
 	isDebugMode = True
+	portaServer = 8080
 
 	if not isDebugMode:
 		try:
 			myServer = Server
-			s = HTTPServer(('localhost', 8080), myServer)
+			s = HTTPServer(('localhost', portaServer), myServer)
 			myServer.initModello(myServer, modelName, temperature, tokens, documentName)
 			print('Started http server')
 			s.serve_forever()
