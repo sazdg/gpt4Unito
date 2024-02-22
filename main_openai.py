@@ -9,8 +9,9 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 
 load_dotenv()
-
-raw_text = getRawText("caricati/DocumentazioneUnito.pdf")
+path_file_risposte_txt = './documenti/risposte.txt'
+path_file_documents_pdf = './documenti/caricati/DocumentazioneUnito.pdf'
+raw_text = getRawText(path_file_documents_pdf)
 
 # Split su numero di caratteri
 text_splitter = CharacterTextSplitter(
@@ -51,8 +52,7 @@ while keepAsking:
     valutazione = input('Risposta corretta? y ⎪ n\n')
     minuti, secondi = divmod(fine, 60)
 
-    path_file_risposte = '../documenti/risposte.txt'
-    file_risposta = open(path_file_risposte, 'a', encoding='utf-8')
+    file_risposta = open(path_file_risposte_txt, 'a', encoding='utf-8')
     file_risposta.write(
         f"Domanda: {query}\nRispsota: {risposta_finale}\n({nomeModello}, temperature:NULL, max_new_tokens:NULL, tempo: {int(minuti)} minuti e {int(secondi)} secondi, valutazione:{valutazione})\n\n")
 

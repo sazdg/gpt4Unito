@@ -10,11 +10,11 @@ def getRawText(nome_file="") -> str:
 
 	if ".txt" in argomento:
 		# Leggi il contenuto del file di testo
-		with open(f'.{DIR_ROOT_DOCUMENTS}/{argomento}', 'r', encoding='utf-8') as file:
+		with open(f'{argomento}', 'r', encoding='utf-8') as file:
 			raw_text = file.read()
 
 	elif ".pdf" in argomento:
-		file = open(f'.{DIR_ROOT_DOCUMENTS}/{argomento}', 'rb')
+		file = open(f'{argomento}', 'rb')
 		doc_reader = PyPDF2.PdfReader(file)
 		for i, page in enumerate(doc_reader.pages):
 			text = page.extract_text()
