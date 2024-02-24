@@ -131,12 +131,11 @@ class AskHuggingFace:
                 fine_risposta = risposta.index("Question")
                 risposta = risposta[0:fine_risposta]
 
-            self._risposta = self.RilevaTraduci(risposta, linguaDiRisposta[0])
-            print(Colors.reset + risposta)
+            self._risposta = self.RilevaTraduci(risposta, linguaDiRisposta[0]).strip()
+            print(Colors.reset + self.Risposta())
 
-            valutazione = 'None'
             if self.IsTerminalMode():
-                valutazione = input('Risposta corretta? y ⎪ n\n')
+                valutazione = input('Risposta corretta? y ⎪ n\n') or 'None'
             file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')
             minuti, secondi = divmod(fine, 60)
             file_risposta.write(
@@ -144,11 +143,11 @@ class AskHuggingFace:
             file_risposta.close()
             print('\n')
 
-            return risposta
+            return self.Risposta()
         else:
             return 'Nessuna domanda a cui rispondere...'
 
-    def RilevaTraduci(self, testo, linguaRichiesta):
+    def RilevaTraduci(self, testo, linguaRichiesta) ->str:
         risposta = testo
         lingua = langid.classify(testo)
         print(f'{Colors.reset}Lingua rilevata: {lingua[0]}\nLingua richiesta: {linguaRichiesta}')
