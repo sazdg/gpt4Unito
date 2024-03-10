@@ -1,4 +1,5 @@
 import PyPDF2
+import os
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.document_loaders import UnstructuredODTLoader, UnstructuredPDFLoader, UnstructuredWordDocumentLoader, TextLoader
 from langchain.schema import Document

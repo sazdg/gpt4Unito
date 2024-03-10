@@ -67,20 +67,25 @@ class AskHuggingFace:
             docs = getObjDirectory()
         return docs
 
-    def Start(self):
-        load_dotenv()
-
+    def digestDocuments(self):
         # Lista di chunks del documento
         documents = self.getObjectDocument()
-        if documents is None:
+        if not documents:
             print('Non sono stati trovati documenti da indicizzare')
+            return None
         # Split su numero di caratteri
-        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=550, chunk_overlap=50, is_separator_regex=False)
+        text_splitter = CharacterTextSplitter(separator="\n", length_function=len, chunk_size=550, chunk_overlap=50,
+                                              is_separator_regex=False)
         docs = text_splitter.split_documents(documents)
         # open source embeddings supportato da langchain
         embeddings = HuggingFaceEmbeddings()
         self._db = FAISS.from_documents(docs, embeddings)
         # database del documento, chunks in vectorstores
+
+    def Start(self):
+        load_dotenv()
+
+        self.digestDocuments()
 
         huggingfacehub_api_token = os.environ['HUGGINGFACEHUB_API_TOKEN']
         print('Initializing Hugging Face Hub')
@@ -89,7 +94,7 @@ class AskHuggingFace:
                              model_kwargs={"temperature": self.Temperatura(), "max_new_tokens": self.MaxTokens(), "num_return_sequences": 1})
 
         self._chain = load_qa_chain(llm, chain_type="stuff")
-        print('Model ready')
+        print(self.NomeModello() + ' ready')
         if self.IsTerminalMode():
             while self.KeepAsking():
                 self.Query(input('Inserisci la domanda: '))
@@ -97,7 +102,7 @@ class AskHuggingFace:
 
     def Ask(self):
         if self._db is None:
-            return 'Inizializzare vectorstores prima di cominciare'
+            return 'Inizializzare vector stores prima di cominciare'
         if self._chain is None:
             return 'Inizializzare il modello prima di cominciare'
 
@@ -134,6 +139,7 @@ class AskHuggingFace:
             self._risposta = self.RilevaTraduci(risposta, linguaDiRisposta[0]).strip()
             print(Colors.reset + self.Risposta())
 
+            valutazione = ''
             if self.IsTerminalMode():
                 valutazione = input('Risposta corretta? y ⎪ n\n') or 'None'
             file_risposta = open("documenti/risposte.txt", 'a', encoding='utf-8')

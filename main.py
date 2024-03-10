@@ -6,11 +6,12 @@ from clsServer import Server
 if __name__ == "__main__":
 
 	# se passato nome file vuoto verrà letta la cartella "documenti/caricati"
-	modelName = 'HuggingFaceH4/zephyr-7b-beta'
+	#modelName = 'HuggingFaceH4/zephyr-7b-beta'
+	modelName = 'gpt-3.5-turbo-instruct'
 	documentName = ''
 	temperature = 0.7
 	tokens = 250
-	isDebugMode = True
+	isDebugMode = False
 	portaServer = 8080
 
 	if not isDebugMode:

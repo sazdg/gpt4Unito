@@ -2,6 +2,7 @@ import os
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from clsAskHuggingFace import AskHuggingFace
+from clsAskOpenAI import AskOpenAI
 from costanti import DIR_LOADED_DOCUMENTS, FILE_NAME_TEST, CREDENZIALI
 import json
 
@@ -14,7 +15,10 @@ class Server(BaseHTTPRequestHandler):
 		self._tokens = tokens
 		self._nomeDocumento = documentname
 		self._askUnito = None
-		self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
+		if modelname == 'gpt-3.5-turbo-instruct':
+			self._askUnito = AskOpenAI(modelname, documentname, False)
+		else:
+			self._askUnito = AskHuggingFace(modelname, temperature, tokens, documentname, False)
 		self._askUnito.Start()
 
 	def do_OPTIONS(self):
@@ -55,9 +59,12 @@ class Server(BaseHTTPRequestHandler):
 				self.wfile.write(json.dumps(({'response': files_caricati, 'conta': len(files_caricati)})).encode('utf-8'))
 			case 'restart':
 				self._askUnito = None
-				self._askUnito = AskHuggingFace(self._nomeModello, self._temperatura, self._tokens, '', False)
+				if self._nomeModello == 'gpt-3.5-turbo-instruct':
+					self._askUnito = AskOpenAI(self._nomeModello, self._nomeDocumento, False)
+				else:
+					self._askUnito = AskHuggingFace(self._nomeModello, self._temperatura, self._tokens, self._nomeDocumento, False)
 				self._askUnito.Start()
-				print('Hugging Face Hub ripartito')
+				print(self._nomeModello + ' ripartito')
 				self.wfile.write(json.dumps(({'response': 'Restart completato'})).encode('utf-8'))
 
 	def do_POST(self):
@@ -96,7 +103,7 @@ class Server(BaseHTTPRequestHandler):
 				else:
 					self.wfile.write(json.dumps(({'response': 'false'})).encode('utf-8'))
 
-	def do_PUT(self):
+	def do_PUT(self): # invio documenti e digest
 		self.set_file_headers()
 		api = self.path.split('/')
 		leng_file = 0
@@ -125,6 +132,8 @@ class Server(BaseHTTPRequestHandler):
 					os.remove(path_file)
 			self.wfile.write(json.dumps(({'response': response})).encode('utf-8'))
 
+			self._askUnito.digestDocuments()
+
 	def checkCredenzialiLogin(self, user, password):
 		isUser = False
 		if user.lower() in CREDENZIALI:
@@ -137,6 +146,8 @@ class Server(BaseHTTPRequestHandler):
 			if path == '':
 				path = DIR_LOADED_DOCUMENTS
 			files = os.listdir(path)
+			if '.DS_Store' in files:
+				files.remove('.DS_Store')
 		except:
 			files = []
 		return files
